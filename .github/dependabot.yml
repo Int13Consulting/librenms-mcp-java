@@ -3,9 +3,23 @@ updates:
   - package-ecosystem: maven
     directory: /
     schedule: { interval: weekly }
+    ignore:
+      # Jakarta EE 11 (3.x); Jetty ee10 under Javalin needs EE 10's 2.1.x (pinned for convergence).
+      - dependency-name: "jakarta.annotation:jakarta.annotation-api"
+        versions: [">= 3"]
+      # The MCP SDK is built against Jackson 3.1: take 3.1.x patches, move minors with the SDK.
+      - dependency-name: "tools.jackson:jackson-bom"
+        update-types: ["version-update:semver-minor", "version-update:semver-major"]
+
   - package-ecosystem: docker
     directory: /
     schedule: { interval: weekly }
+    ignore:
+      # The build image pins Maven and the JDK together (maven:X.Y.Z-eclipse-temurin-25). Dependabot
+      # cannot tell a JDK bump inside the tag from a Maven bump, and proposed a floating non-LTS tag,
+      # so this image is updated by hand alongside maven.compiler.release.
+      - dependency-name: "maven"
+
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly }
