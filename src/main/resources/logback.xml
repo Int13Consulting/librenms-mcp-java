@@ -1,0 +1,29 @@
+<configuration>
+  <!-- The unused appender of the two triggers a warning; keep logback status off stderr. -->
+  <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+  <!-- LOG_FORMAT=json (container default) or text. Always stderr: in stdio mode stdout carries MCP. -->
+  <appender name="text" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.err</target>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%X{requestId:-}] %logger{20} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.err</target>
+    <encoder class="ch.qos.logback.classic.encoder.JsonEncoder">
+      <withSequenceNumber>false</withSequenceNumber>
+      <withNanoseconds>false</withNanoseconds>
+      <withFormattedMessage>true</withFormattedMessage>
+      <withMessage>false</withMessage>
+      <withArguments>false</withArguments>
+    </encoder>
+  </appender>
+  <logger name="org.eclipse.jetty" level="WARN"/>
+  <logger name="io.javalin" level="WARN"/>
+  <logger name="io.modelcontextprotocol" level="WARN"/>
+  <!-- Warns about FastMCP's x-fastmcp-wrap-result keyword in the tool-search output schema. -->
+  <logger name="com.networknt.schema" level="ERROR"/>
+  <root level="INFO">
+    <appender-ref ref="${LOG_FORMAT:-text}"/>
+  </root>
+</configuration>

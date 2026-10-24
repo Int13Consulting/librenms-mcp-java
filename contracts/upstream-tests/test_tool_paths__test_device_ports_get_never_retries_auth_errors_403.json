@@ -1,0 +1,39 @@
+{
+  "test": "tests/test_tool_paths.py::test_device_ports_get_never_retries_auth_errors[403]",
+  "calls": [
+    {
+      "tool": "device_ports_get",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Te2/7"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports/Te2%2F7",
+          "query": [],
+          "response": {
+            "status": 403,
+            "contentType": "application/json",
+            "body": {
+              "message": "Unauthenticated."
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"message\":\"Unauthenticated.\",\"status\":\"error\"}"
+          }
+        ],
+        "structuredContent": {
+          "message": "Unauthenticated.",
+          "status": "error"
+        }
+      }
+    }
+  ]
+}

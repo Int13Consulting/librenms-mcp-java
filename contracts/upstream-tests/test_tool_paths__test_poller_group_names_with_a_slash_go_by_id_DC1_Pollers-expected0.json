@@ -1,0 +1,67 @@
+{
+  "test": "tests/test_tool_paths.py::test_poller_group_names_with_a_slash_go_by_id[DC1/Pollers-expected0]",
+  "calls": [
+    {
+      "tool": "poller_group_get",
+      "arguments": {
+        "poller_group": "DC1/Pollers"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/poller_group",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "get_poller_group": [
+                {
+                  "id": 3,
+                  "group_name": "DC1/Pollers"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/poller_group/3",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "get_poller_group": [
+                {
+                  "id": 3,
+                  "group_name": "DC1/Pollers"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"get_poller_group\":[{\"id\":3,\"group_name\":\"DC1/Pollers\"}]}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "get_poller_group": [
+            {
+              "id": 3,
+              "group_name": "DC1/Pollers"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

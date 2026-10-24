@@ -1,0 +1,48 @@
+{
+  "test": "tests/test_tool_paths.py::test_all_digit_group_ref_with_leading_zeros_is_read_as_the_id",
+  "calls": [
+    {
+      "tool": "devicegroup_delete",
+      "arguments": {
+        "name": "007"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devicegroups",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "groups": [
+                {
+                  "id": 7,
+                  "name": "core"
+                },
+                {
+                  "id": 12,
+                  "name": "007"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"'007' is both the ID of device group 'core' and the name of device group ID 12; use the name of the first or the ID of the second\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "'007' is both the ID of device group 'core' and the name of device group ID 12; use the name of the first or the ID of the second"
+        }
+      }
+    }
+  ]
+}

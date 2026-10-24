@@ -1,0 +1,41 @@
+{
+  "tool": "bill_history_graph",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "bill_id": 1,
+        "history_id": 1,
+        "graph_type": "bits"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/bills/1/history/1/graphs/bits",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 500,
+            "contentType": "application/json",
+            "body": {
+              "message": "Server Error"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "Could not render the bits graph for bill 1 history 1: LibreNMS returned HTTP 500 for GET bills/1/history/1/graphs/bits: Server Error"
+          }
+        ]
+      }
+    }
+  }
+}

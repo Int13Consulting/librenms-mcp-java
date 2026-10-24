@@ -1,0 +1,108 @@
+{
+  "tool": "alert_templates_list",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/alert_templates",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "alert_templates": [
+                {
+                  "id": 1,
+                  "name": "BGP Sessions.",
+                  "template": "{{ $alert->title }}\nSeverity: {{ $alert->severity }}\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\nTimestamp: {{ $alert->timestamp }}\nUnique-ID: {{ $alert->uid }}\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\n@if ($alert->faults) Faults:\n@foreach ($alert->faults as $key => $value)\n  #{{ $key }}: {{ $value['string'] }}\n  Peer: {{ $value['astext'] }}\n  Peer IP: {{ $value['bgpPeerIdentifier'] }}\n  Peer AS: {{ $value['bgpPeerRemoteAs'] }}\n  Peer EstTime: {{ $value['bgpPeerFsmEstablishedTime'] }}\n  Peer State: {{ $value['bgpPeerState'] }}\n@endforeach\n@endif",
+                  "title": "",
+                  "title_rec": "",
+                  "alert_rules": []
+                },
+                {
+                  "id": 2,
+                  "name": "Ports",
+                  "template": "{{ $alert->title }}\nSeverity: {{ $alert->severity }}\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\nTimestamp: {{ $alert->timestamp }}\nUnique-ID: {{ $alert->uid }}\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\n@if ($alert->faults) Faults:\n@foreach ($alert->faults as $key => $value)\n  #{{ $key }}: {{ $value['string'] }}\n  Port: {{ $value['ifName'] }}\n  Port Name: {{ $value['ifAlias'] }}\n  Port Status: {{ $value['message'] }}\n@endforeach\n@endif",
+                  "title": "",
+                  "title_rec": "",
+                  "alert_rules": []
+                },
+                {
+                  "id": 3,
+                  "name": "Sensors",
+                  "template": "{{ $alert->title }}\n\nDevice Name: {{ $alert->hostname }}\nSeverity: {{ $alert->severity }}\nTimestamp: {{ $alert->timestamp }}\nUptime: {{ $alert->uptime_short }}\n@if ($alert->state == 0)\nTime elapsed: {{ $alert->elapsed }}\n@endif\nLocation: {{ $alert->location }}\nDescription: {{ $alert->description }}\nFeatures: {{ $alert->features }}\nNotes: {{ $alert->notes }}\n\nRule: {{ $alert->name ?? $alert->rule }}\n@if ($alert->faults)\nFaults:\n@foreach ($alert->faults as $key => $value)\n@php($unit = __(\"sensors.{$value['sensor_class']}.unit\"))\n#{{ $key }}: {{ $value['sensor_descr'] ?? 'Sensor' }}\n\nCurrent: {{ $value['sensor_current'].$unit }}\nPrevious: {{ $value['sensor_prev'].$unit }}\nLimit: {{ $value['sensor_limit'].$unit }}\nOver Limit: {{ round($value['sensor_current']-$value['sensor_limit'], 2).$unit }}\n\n@endforeach\n@endif",
+                  "title": "",
+                  "title_rec": "",
+                  "alert_rules": []
+                },
+                {
+                  "id": 4,
+                  "name": "Default Alert Template",
+                  "template": "{{ $alert->title }}\nSeverity: {{ $alert->severity }}\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\nTimestamp: {{ $alert->timestamp }}\nUnique-ID: {{ $alert->uid }}\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\n@if ($alert->faults) Faults:\n@foreach ($alert->faults as $key => $value)\n  #{{ $key }}: {{ $value['string'] }}\n@endforeach\n@endif\nAlert sent to:\n@foreach ($alert->contacts as $key => $value)\n  {{ $value }} <{{ $key }}>\n@endforeach",
+                  "title": null,
+                  "title_rec": null,
+                  "alert_rules": []
+                }
+              ],
+              "count": 4
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":4,\"alert_templates\":[{\"id\":1,\"name\":\"BGP Sessions.\",\"template\":\"{{ $alert->title }}\\nSeverity: {{ $alert->severity }}\\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\\nTimestamp: {{ $alert->timestamp }}\\nUnique-ID: {{ $alert->uid }}\\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\\n@if ($alert->faults) Faults:\\n@foreach ($alert->faults as $key => $value)\\n  #{{ $key }}: {{ $value['string'] }}\\n  Peer: {{ $value['astext'] }}\\n  Peer IP: {{ $value['bgpPeerIdentifier'] }}\\n  Peer AS: {{ $value['bgpPeerRemoteAs'] }}\\n  Peer EstTime: {{ $value['bgpPeerFsmEstablishedTime'] }}\\n  Peer State: {{ $value['bgpPeerState'] }}\\n@endforeach\\n@endif\",\"title\":\"\",\"title_rec\":\"\",\"alert_rules\":[]},{\"id\":2,\"name\":\"Ports\",\"template\":\"{{ $alert->title }}\\nSeverity: {{ $alert->severity }}\\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\\nTimestamp: {{ $alert->timestamp }}\\nUnique-ID: {{ $alert->uid }}\\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\\n@if ($alert->faults) Faults:\\n@foreach ($alert->faults as $key => $value)\\n  #{{ $key }}: {{ $value['string'] }}\\n  Port: {{ $value['ifName'] }}\\n  Port Name: {{ $value['ifAlias'] }}\\n  Port Status: {{ $value['message'] }}\\n@endforeach\\n@endif\",\"title\":\"\",\"title_rec\":\"\",\"alert_rules\":[]},{\"id\":3,\"name\":\"Sensors\",\"template\":\"{{ $alert->title }}\\n\\nDevice Name: {{ $alert->hostname }}\\nSeverity: {{ $alert->severity }}\\nTimestamp: {{ $alert->timestamp }}\\nUptime: {{ $alert->uptime_short }}\\n@if ($alert->state == 0)\\nTime elapsed: {{ $alert->elapsed }}\\n@endif\\nLocation: {{ $alert->location }}\\nDescription: {{ $alert->description }}\\nFeatures: {{ $alert->features }}\\nNotes: {{ $alert->notes }}\\n\\nRule: {{ $alert->name ?? $alert->rule }}\\n@if ($alert->faults)\\nFaults:\\n@foreach ($alert->faults as $key => $value)\\n@php($unit = __(\\\"sensors.{$value['sensor_class']}.unit\\\"))\\n#{{ $key }}: {{ $value['sensor_descr'] ?? 'Sensor' }}\\n\\nCurrent: {{ $value['sensor_current'].$unit }}\\nPrevious: {{ $value['sensor_prev'].$unit }}\\nLimit: {{ $value['sensor_limit'].$unit }}\\nOver Limit: {{ round($value['sensor_current']-$value['sensor_limit'], 2).$unit }}\\n\\n@endforeach\\n@endif\",\"title\":\"\",\"title_rec\":\"\",\"alert_rules\":[]},{\"id\":4,\"name\":\"Default Alert Template\",\"template\":\"{{ $alert->title }}\\nSeverity: {{ $alert->severity }}\\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\\nTimestamp: {{ $alert->timestamp }}\\nUnique-ID: {{ $alert->uid }}\\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\\n@if ($alert->faults) Faults:\\n@foreach ($alert->faults as $key => $value)\\n  #{{ $key }}: {{ $value['string'] }}\\n@endforeach\\n@endif\\nAlert sent to:\\n@foreach ($alert->contacts as $key => $value)\\n  {{ $value }} <{{ $key }}>\\n@endforeach\",\"title\":null,\"title_rec\":null,\"alert_rules\":[]}],\"total\":4,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 4,
+          "alert_templates": [
+            {
+              "id": 1,
+              "name": "BGP Sessions.",
+              "template": "{{ $alert->title }}\nSeverity: {{ $alert->severity }}\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\nTimestamp: {{ $alert->timestamp }}\nUnique-ID: {{ $alert->uid }}\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\n@if ($alert->faults) Faults:\n@foreach ($alert->faults as $key => $value)\n  #{{ $key }}: {{ $value['string'] }}\n  Peer: {{ $value['astext'] }}\n  Peer IP: {{ $value['bgpPeerIdentifier'] }}\n  Peer AS: {{ $value['bgpPeerRemoteAs'] }}\n  Peer EstTime: {{ $value['bgpPeerFsmEstablishedTime'] }}\n  Peer State: {{ $value['bgpPeerState'] }}\n@endforeach\n@endif",
+              "title": "",
+              "title_rec": "",
+              "alert_rules": []
+            },
+            {
+              "id": 2,
+              "name": "Ports",
+              "template": "{{ $alert->title }}\nSeverity: {{ $alert->severity }}\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\nTimestamp: {{ $alert->timestamp }}\nUnique-ID: {{ $alert->uid }}\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\n@if ($alert->faults) Faults:\n@foreach ($alert->faults as $key => $value)\n  #{{ $key }}: {{ $value['string'] }}\n  Port: {{ $value['ifName'] }}\n  Port Name: {{ $value['ifAlias'] }}\n  Port Status: {{ $value['message'] }}\n@endforeach\n@endif",
+              "title": "",
+              "title_rec": "",
+              "alert_rules": []
+            },
+            {
+              "id": 3,
+              "name": "Sensors",
+              "template": "{{ $alert->title }}\n\nDevice Name: {{ $alert->hostname }}\nSeverity: {{ $alert->severity }}\nTimestamp: {{ $alert->timestamp }}\nUptime: {{ $alert->uptime_short }}\n@if ($alert->state == 0)\nTime elapsed: {{ $alert->elapsed }}\n@endif\nLocation: {{ $alert->location }}\nDescription: {{ $alert->description }}\nFeatures: {{ $alert->features }}\nNotes: {{ $alert->notes }}\n\nRule: {{ $alert->name ?? $alert->rule }}\n@if ($alert->faults)\nFaults:\n@foreach ($alert->faults as $key => $value)\n@php($unit = __(\"sensors.{$value['sensor_class']}.unit\"))\n#{{ $key }}: {{ $value['sensor_descr'] ?? 'Sensor' }}\n\nCurrent: {{ $value['sensor_current'].$unit }}\nPrevious: {{ $value['sensor_prev'].$unit }}\nLimit: {{ $value['sensor_limit'].$unit }}\nOver Limit: {{ round($value['sensor_current']-$value['sensor_limit'], 2).$unit }}\n\n@endforeach\n@endif",
+              "title": "",
+              "title_rec": "",
+              "alert_rules": []
+            },
+            {
+              "id": 4,
+              "name": "Default Alert Template",
+              "template": "{{ $alert->title }}\nSeverity: {{ $alert->severity }}\n@if ($alert->state == 0)Time elapsed: {{ $alert->elapsed }} @endif\nTimestamp: {{ $alert->timestamp }}\nUnique-ID: {{ $alert->uid }}\nRule: @if ($alert->name) {{ $alert->name }} @else {{ $alert->rule }} @endif\n@if ($alert->faults) Faults:\n@foreach ($alert->faults as $key => $value)\n  #{{ $key }}: {{ $value['string'] }}\n@endforeach\n@endif\nAlert sent to:\n@foreach ($alert->contacts as $key => $value)\n  {{ $value }} <{{ $key }}>\n@endforeach",
+              "title": null,
+              "title_rec": null,
+              "alert_rules": []
+            }
+          ],
+          "total": 4,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  }
+}

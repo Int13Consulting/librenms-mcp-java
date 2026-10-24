@@ -1,0 +1,40 @@
+{
+  "test": "tests/test_tool_paths.py::test_port_graph_reports_real_errors_instead_of_falling_back[failure0-Unauthenticated]",
+  "calls": [
+    {
+      "tool": "port_graph",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Po99"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports/Po99/port_bits",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 401,
+            "contentType": "application/json",
+            "body": {
+              "message": "Unauthenticated."
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "Could not render the bits graph for sw1 Po99: LibreNMS returned HTTP 401 for GET devices/sw1/ports/Po99/port_bits: Unauthenticated."
+          }
+        ]
+      }
+    }
+  ]
+}

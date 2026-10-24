@@ -1,0 +1,142 @@
+{
+  "tool": "device_delete",
+  "scenarios": {
+    "required": {
+      "arguments": {
+        "hostname": "core1"
+      },
+      "requests": [
+        {
+          "method": "DELETE",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "full": {
+      "arguments": {
+        "hostname": "core1"
+      },
+      "requests": [
+        {
+          "method": "DELETE",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "error": {
+      "arguments": {
+        "hostname": "core1"
+      },
+      "requests": [
+        {
+          "method": "DELETE",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Not found\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Not found"
+        }
+      }
+    },
+    "dot-segment-rejected": {
+      "arguments": {
+        "hostname": ".."
+      },
+      "requests": [],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Invalid path segment: '..'\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Invalid path segment: '..'"
+        }
+      }
+    },
+    "dot-segments-rejected": {
+      "arguments": {
+        "hostname": "../rules/5"
+      },
+      "requests": [],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Invalid path segment: '../rules/5'\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Invalid path segment: '../rules/5'"
+        }
+      }
+    }
+  }
+}

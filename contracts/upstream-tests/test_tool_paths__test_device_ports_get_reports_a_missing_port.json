@@ -1,0 +1,59 @@
+{
+  "test": "tests/test_tool_paths.py::test_device_ports_get_reports_a_missing_port",
+  "calls": [
+    {
+      "tool": "device_ports_get",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Po99"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports/Po99",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "port": {
+                "in_rate": "0 bps"
+              }
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "devices": [
+                {
+                  "device_id": 1
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"No port named 'Po99' on device 'sw1'\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "No port named 'Po99' on device 'sw1'"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "test": "tests/test_tool_paths.py::test_port_graph_sends_librenms_graph_names[upkts-port_upkts]",
+  "calls": [
+    {
+      "tool": "port_graph",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Te2/7",
+        "graph_type": "upkts"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports/Te2%2F7/port_upkts",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/svg+xml",
+            "bodyBase64": "PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLz4="
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLz4=",
+            "mimeType": "image/svg+xml"
+          }
+        ]
+      }
+    }
+  ]
+}

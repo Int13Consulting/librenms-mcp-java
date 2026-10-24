@@ -1,0 +1,57 @@
+{
+  "test": "tests/test_tool_paths.py::test_oxidized_list_keeps_an_empty_answer_for_a_known_device",
+  "calls": [
+    {
+      "tool": "oxidized_list",
+      "arguments": {
+        "hostname": "core1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/oxidized/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": []
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "devices": [
+                {
+                  "device_id": 1,
+                  "hostname": "core1"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"devices\":[],\"count\":0,\"total\":0,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "devices": [],
+          "count": 0,
+          "total": 0,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  ]
+}

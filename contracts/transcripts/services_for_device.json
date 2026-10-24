@@ -1,0 +1,168 @@
+{
+  "tool": "services_for_device",
+  "scenarios": {
+    "required": {
+      "arguments": {
+        "hostname": "core1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/services/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 1,
+              "devices": [
+                {
+                  "device_id": 1,
+                  "hostname": "core1"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "full": {
+      "arguments": {
+        "hostname": "core1",
+        "state": 1,
+        "service_type": "service_type-1",
+        "limit": 1,
+        "offset": 1
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/services/core1",
+          "query": [
+            [
+              "state",
+              "1"
+            ],
+            [
+              "type",
+              "service_type-1"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 1,
+              "devices": [
+                {
+                  "device_id": 1,
+                  "hostname": "core1"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "error": {
+      "arguments": {
+        "hostname": "core1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/services/core1",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Not found\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Not found"
+        }
+      }
+    }
+  }
+}

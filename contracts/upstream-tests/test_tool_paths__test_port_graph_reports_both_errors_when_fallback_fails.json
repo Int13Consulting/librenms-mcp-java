@@ -1,0 +1,53 @@
+{
+  "test": "tests/test_tool_paths.py::test_port_graph_reports_both_errors_when_fallback_fails",
+  "calls": [
+    {
+      "tool": "port_graph",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Po1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports/Po1/port_bits",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 404,
+            "contentType": "text/plain; charset=utf-8",
+            "bodyBase64": "PGh0bWw+V3JvbmcgcGF0aDwvaHRtbD4="
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports",
+          "query": [
+            [
+              "columns",
+              "port_id,ifName"
+            ]
+          ],
+          "response": {
+            "status": 404,
+            "contentType": "text/plain; charset=utf-8",
+            "bodyBase64": "PGh0bWw+V3JvbmcgcGF0aDwvaHRtbD4="
+          }
+        }
+      ],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "Could not render the bits graph for sw1 Po1: LibreNMS returned HTTP 404 for GET devices/sw1/ports/Po1/port_bits: non-JSON response: <html>Wrong path</html>; the lookup by port ID also failed: LibreNMS returned HTTP 404 for GET devices/sw1/ports: non-JSON response: <html>Wrong path</html>"
+          }
+        ]
+      }
+    }
+  ]
+}

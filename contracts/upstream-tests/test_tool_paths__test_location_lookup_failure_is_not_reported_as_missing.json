@@ -1,0 +1,39 @@
+{
+  "test": "tests/test_tool_paths.py::test_location_lookup_failure_is_not_reported_as_missing",
+  "calls": [
+    {
+      "tool": "location_get",
+      "arguments": {
+        "location": "DC1/Room 2"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/resources/locations",
+          "query": [],
+          "response": {
+            "status": 403,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Denied"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Could not look up location 'DC1/Room 2': Denied\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Could not look up location 'DC1/Room 2': Denied"
+        }
+      }
+    }
+  ]
+}

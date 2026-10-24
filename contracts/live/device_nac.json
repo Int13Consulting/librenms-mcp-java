@@ -1,0 +1,43 @@
+{
+  "tool": "device_nac",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "hostname": "192.0.2.1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/192.0.2.1/nac",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "ports_nac": []
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"ports_nac\":[],\"count\":0,\"total\":0,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "ports_nac": [],
+          "count": 0,
+          "total": 0,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  }
+}

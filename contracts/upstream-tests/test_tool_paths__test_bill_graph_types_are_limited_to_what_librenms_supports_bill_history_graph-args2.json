@@ -1,0 +1,23 @@
+{
+  "test": "tests/test_tool_paths.py::test_bill_graph_types_are_limited_to_what_librenms_supports[bill_history_graph-args2]",
+  "calls": [
+    {
+      "tool": "bill_history_graph",
+      "arguments": {
+        "bill_id": 1,
+        "history_id": 2,
+        "graph_type": "monthly"
+      },
+      "requests": [],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "1 validation error for call[bill_history_graph]\ngraph_type\n  Input should be 'bits', 'day' or 'hour' [type=literal_error, input_value='monthly', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/literal_error"
+          }
+        ]
+      }
+    }
+  ]
+}

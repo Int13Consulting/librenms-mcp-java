@@ -1,0 +1,119 @@
+{
+  "tool": "alert_get_by_id",
+  "scenarios": {
+    "required": {
+      "arguments": {
+        "alert_id": 1
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/alerts/1",
+          "query": [
+            [
+              "state",
+              "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "full": {
+      "arguments": {
+        "alert_id": 1
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/alerts/1",
+          "query": [
+            [
+              "state",
+              "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "error": {
+      "arguments": {
+        "alert_id": 1
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/alerts/1",
+          "query": [
+            [
+              "state",
+              "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            ]
+          ],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Not found\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Not found"
+        }
+      }
+    }
+  }
+}

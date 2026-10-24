@@ -1,0 +1,7436 @@
+{
+  "upstream": {
+    "repository": "https://github.com/mhajder/librenms-mcp",
+    "commit": "09ba2f6d393d199ff6bb0b0fdaa824da0f909274",
+    "packageVersion": "1.12.1",
+    "fastmcpVersion": "4.1.2"
+  },
+  "toolCount": 110,
+  "tools": [
+    {
+      "name": "alerts_get",
+      "module": "alerts",
+      "tags": [
+        "alert",
+        "global-read",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Alerts Get",
+      "description": "Get alerts from LibreNMS with optional filters.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter the alerts by state: 0 = ok, 1 = alert, 2 = ack. Optional."
+          },
+          "severity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter the alerts by severity. Valid values: ok, warning, critical. Optional."
+          },
+          "alert_rule": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter alerts by alert rule ID. Optional."
+          },
+          "order": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "How to order the output, default is by timestamp (descending). Can be appended by DESC or ASC to change the order. Optional."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert",
+            "global-read",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'alerts'"
+          ],
+          "params": "params"
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "alert_get_by_id",
+      "module": "alerts",
+      "tags": [
+        "alert",
+        "global-read",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Alert Get By Id",
+      "description": "Get a specific alert from LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "alert_id": {
+            "description": "The ID of the alert to retrieve.",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "alert_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert",
+            "global-read",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'alerts'",
+            "alert_id"
+          ],
+          "params": "{'state': ALL_ALERT_STATES}"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_acknowledge",
+      "module": "alerts",
+      "tags": [
+        "admin",
+        "alert",
+        "librenms"
+      ],
+      "title": "Alert Acknowledge",
+      "description": "Acknowledge an alert in LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "alert_id": {
+            "description": "Alert ID to acknowledge",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional note to attach to the acknowledgement"
+          },
+          "until_clear": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "If true, acknowledge until the alert clears. If false, acknowledge only this instance."
+          }
+        },
+        "required": [
+          "alert_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "alert",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PUT",
+          "segments": [
+            "'alerts'",
+            "alert_id"
+          ],
+          "data": "data or None"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_unmute",
+      "module": "alerts",
+      "tags": [
+        "admin",
+        "alert",
+        "librenms"
+      ],
+      "title": "Alert Unmute",
+      "description": "Unmute an alert in LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "alert_id": {
+            "description": "Alert ID to unmute",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "alert_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "alert",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PUT",
+          "segments": [
+            "'alerts'",
+            "'unmute'",
+            "alert_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_rules_list",
+      "module": "alerts",
+      "tags": [
+        "alert-rules",
+        "global-read",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Alert Rules List",
+      "description": "List all alert rules from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert-rules",
+            "global-read",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'rules'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "alert_rule_get",
+      "module": "alerts",
+      "tags": [
+        "alert-rules",
+        "global-read",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Alert Rule Get",
+      "description": "Get details for a specific alert rule by ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "rule_id": {
+            "description": "Alert rule ID",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "rule_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert-rules",
+            "global-read",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'rules'",
+            "rule_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_rule_add",
+      "module": "alerts",
+      "tags": [
+        "admin",
+        "alert-rules",
+        "librenms"
+      ],
+      "title": "Alert Rule Add",
+      "description": "Add a new alert rule to LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Alert rule payload fields:\n- name (required): Rule name\n- builder (required): Rule builder JSON with conditions\n- devices (required): Array of device IDs or [-1] for all devices\n- severity (required): ok, warning, critical\n- count (optional): Trigger threshold count (default: 1)\n- delay (optional): Delay before alerting in seconds\n- interval (optional): Re-alert interval in seconds\n- mute (optional): Mute alerts (true/false)\n- invert (optional): Invert rule logic (true/false)\n- notes (optional): Rule notes\n- disabled (optional): Disable rule (0/1)\n\nDo not include rule_id: LibreNMS would edit that rule instead of adding one.\n\nExample:\n{\"name\": \"Device Down\", \"severity\": \"critical\", \"devices\": [-1], \"builder\": {\"condition\": \"AND\", \"rules\": [...]}}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "alert-rules",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'rules'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_rule_edit",
+      "module": "alerts",
+      "tags": [
+        "admin",
+        "alert-rules",
+        "librenms"
+      ],
+      "title": "Alert Rule Edit",
+      "description": "Edit an existing alert rule in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Alert rule edit payload (must include rule_id field):\n- rule_id (required): Integer rule ID to edit. Without it LibreNMS would create a new\n  rule, so the tool refuses the call.\n- name: Rule name\n- builder: Rule builder JSON with conditions\n- devices: Array of device IDs or [-1] for all devices\n- severity: ok, warning, critical\n- count: Trigger threshold count\n- delay: Delay before alerting in seconds\n- interval: Re-alert interval in seconds\n- mute: Mute alerts (true/false)\n- invert: Invert rule logic (true/false)\n- notes: Rule notes\n- disabled: Disable rule (0/1)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "alert-rules",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PUT",
+          "segments": [
+            "'rules'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_rule_delete",
+      "module": "alerts",
+      "tags": [
+        "admin",
+        "alert-rules",
+        "librenms"
+      ],
+      "title": "Alert Rule Delete",
+      "description": "Delete an alert rule from LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "rule_id": {
+            "description": "Alert rule ID to delete",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "rule_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "alert-rules",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "DELETE",
+          "segments": [
+            "'rules'",
+            "rule_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_templates_list",
+      "module": "alerts",
+      "tags": [
+        "alert-templates",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Alert Templates List",
+      "description": "List all alert templates from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert-templates",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'alert_templates'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "alert_template_get",
+      "module": "alerts",
+      "tags": [
+        "alert-templates",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Alert Template Get",
+      "description": "Get a specific alert template from LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "template_id": {
+            "description": "Alert template ID",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "template_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert-templates",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'alert_templates'",
+            "template_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_template_create",
+      "module": "alerts",
+      "tags": [
+        "alert-templates",
+        "librenms"
+      ],
+      "title": "Alert Template Create",
+      "description": "Create a new alert template in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Alert template payload fields:\n- name (required): Template name\n- template (required): Template body (Laravel Blade syntax)\n- title (required): Alert title template\n- title_rec (required): Recovery title template\n- alert_rules (required): Array of alert rule IDs to associate with this template (use [] for none)\n\nLibreNMS renders title, title_rec and template against test data and reads\nalert_rules unconditionally, so all five fields must be present. Do not\ninclude template_id: LibreNMS would edit that template instead of creating one.\n\nExample:\n{\"name\": \"Custom Alert\", \"template\": \"{{ $alert->title }}\\nSeverity: {{ $alert->severity }}\", \"title\": \"Alert: {{ $alert->title }}\", \"title_rec\": \"Recovered: {{ $alert->title }}\", \"alert_rules\": []}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert-templates",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'alert_templates'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "alert_template_edit",
+      "module": "alerts",
+      "tags": [
+        "alert-templates",
+        "librenms"
+      ],
+      "title": "Alert Template Edit",
+      "description": "Edit an existing alert template in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Alert template edit payload (must include template_id):\n- template_id (required): Integer template ID to edit. Without it LibreNMS would create a\n  new template, so the tool refuses the call.\n- name (required): Template name\n- template (required): Template body (Laravel Blade syntax)\n- title (required): Alert title template\n- title_rec (required): Recovery title template\n- alert_rules (required): Array of alert rule IDs to associate with this template (use [] for none)\n\nLibreNMS replaces the whole template on edit, so resend every field, not just\nthe ones being changed.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "alert-templates",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PUT",
+          "segments": [
+            "'alert_templates'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bills_list",
+      "module": "bills",
+      "tags": [
+        "bills",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Bills List",
+      "description": "List bills from LibreNMS with optional filters.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "period": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional: previous to list previous period bills"
+          },
+          "ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Bill reference filter"
+          },
+          "custid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Customer ID filter"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "bills",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "bill_get",
+      "module": "bills",
+      "tags": [
+        "bills",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Bill Get",
+      "description": "Get a specific bill from LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bill_id": {
+            "description": "Bill ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "period": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional period=previous"
+          }
+        },
+        "required": [
+          "bill_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "bills",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'",
+            "bill_id"
+          ],
+          "params": "params"
+        },
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'",
+            "bill_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bill_graph",
+      "module": "bills",
+      "tags": [
+        "bills",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Bill Graph",
+      "description": "Render a bill graph as an image.\n\nFor the underlying numbers rather than a picture, use bill_graph_data.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bill_id": {
+            "description": "Bill ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "graph_type": {
+            "description": "Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)",
+            "enum": [
+              "bits",
+              "monthly"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "bill_id",
+          "graph_type"
+        ],
+        "type": "object"
+      },
+      "outputSchema": null,
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "bills",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'",
+            "bill_id",
+            "'graphs'",
+            "graph_type"
+          ],
+          "params": "image_params()",
+          "binary": true
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bill_graph_data",
+      "module": "bills",
+      "tags": [
+        "bills",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Bill Graph Data",
+      "description": "Get bill graph data from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bill_id": {
+            "description": "Bill ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "graph_type": {
+            "description": "Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)",
+            "enum": [
+              "bits",
+              "monthly"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "bill_id",
+          "graph_type"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "bills",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'",
+            "bill_id",
+            "'graphdata'",
+            "graph_type"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bill_history",
+      "module": "bills",
+      "tags": [
+        "bills",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Bill History",
+      "description": "Get bill history from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bill_id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Bill ID."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "bill_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "bills",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'",
+            "bill_id",
+            "'history'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "bill_history_graph",
+      "module": "bills",
+      "tags": [
+        "bills",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Bill History Graph",
+      "description": "Render a graph for a past billing period as an image.\n\nFor the underlying numbers rather than a picture, use\nbill_history_graph_data.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bill_id": {
+            "description": "Bill ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "history_id": {
+            "description": "Bill history ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "graph_type": {
+            "description": "Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)",
+            "enum": [
+              "bits",
+              "day",
+              "hour"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "bill_id",
+          "history_id",
+          "graph_type"
+        ],
+        "type": "object"
+      },
+      "outputSchema": null,
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "bills",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'",
+            "bill_id",
+            "'history'",
+            "history_id",
+            "'graphs'",
+            "graph_type"
+          ],
+          "params": "image_params()",
+          "binary": true
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bill_history_graph_data",
+      "module": "bills",
+      "tags": [
+        "bills",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Bill History Graph Data",
+      "description": "Get bill history graph data from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bill_id": {
+            "description": "Bill ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "history_id": {
+            "description": "Bill history ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "graph_type": {
+            "description": "Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)",
+            "enum": [
+              "bits",
+              "day",
+              "hour"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "bill_id",
+          "history_id",
+          "graph_type"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "bills",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bills'",
+            "bill_id",
+            "'history'",
+            "history_id",
+            "'graphdata'",
+            "graph_type"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bill_create_or_update",
+      "module": "bills",
+      "tags": [
+        "admin",
+        "bills",
+        "librenms"
+      ],
+      "title": "Bill Create Or Update",
+      "description": "Create or update a bill in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Bill payload fields:\n- bill_id (for updates only): Existing bill ID\n- bill_name (required for create): Bill name\n- ports (required for create): Array of port IDs to include\n- bill_type (required): \"quota\" or \"cdr\" (95th percentile)\n- bill_quota (required if quota type): Quota in bytes\n- bill_cdr (required if cdr type): Committed data rate\n- bill_day (optional): Billing day of month (1-31)\n- bill_custid (optional): Customer ID reference\n- bill_ref (optional): Billing reference\n- bill_notes (optional): Notes",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "bills",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'bills'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bill_delete",
+      "module": "bills",
+      "tags": [
+        "admin",
+        "bills",
+        "librenms"
+      ],
+      "title": "Bill Delete",
+      "description": "Delete a bill from LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bill_id": {
+            "description": "Bill ID to delete",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "bill_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "bills",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "DELETE",
+          "segments": [
+            "'bills'",
+            "bill_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "devices_list",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Devices List",
+      "description": "List devices from LibreNMS with optional filters.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Query parameters for filtering devices. Examples:\n- {\"type\": \"hostname\", \"query\": \"router\"} - search by hostname substring\n- {\"type\": \"os\", \"query\": \"linux\"} - filter by operating system\n- {\"type\": \"location\", \"query\": \"datacenter\"} - filter by location\n- {\"type\": \"up\"} or {\"type\": \"down\"} - filter by status\n- {\"order\": \"hostname ASC\"} - sort results\n\nValid type values: all, active, ignored, up, down, disabled, os, mac, ipv4, ipv6, location, location_id, hostname, sysName, display, device_id, type, serial, version, hardware, features"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'"
+          ],
+          "params": "query"
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "device_add",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "devices",
+        "librenms"
+      ],
+      "title": "Device Add",
+      "description": "Add a new device to LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Device add payload. Required and optional fields:\n- hostname (required): Device hostname or IP\n- version (optional): SNMP version (v1, v2c, v3). Default: v2c\n- community (required for v1/v2c): SNMP community string\n- authlevel (required for v3): noAuthNoPriv, authNoPriv, authPriv\n- authname (required for v3): SNMPv3 username\n- authpass (required for v3 with auth): Authentication password\n- authalgo (optional): MD5 or SHA\n- cryptopass (required for authPriv): Privacy password\n- cryptoalgo (optional): AES or DES\n- port (optional): SNMP port (default: 161)\n- transport (optional): udp or tcp\n- poller_group (optional): Poller group ID\n- force_add (optional): Skip ICMP/SNMP checks (true/false)\n- ping_fallback (optional): Add as ping-only if SNMP fails",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "devices",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'devices'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_get",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Get",
+      "description": "Get device details from LibreNMS by hostname.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_delete",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "devices",
+        "librenms"
+      ],
+      "title": "Device Delete",
+      "description": "Delete a device from LibreNMS by hostname.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname to delete",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "devices",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "DELETE",
+          "segments": [
+            "'devices'",
+            "hostname"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_update",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "devices",
+        "librenms"
+      ],
+      "title": "Device Update",
+      "description": "Update device fields in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Patchable device fields:\n- notes: Device notes/comments\n- purpose: Device purpose description\n- override_sysLocation: true/false to override SNMP location\n- location_id: Location ID to assign\n- poller_group: Poller group ID\n- ignore: 0/1 to ignore device in alerts\n- disabled: 0/1 to disable polling\n- snmp_disable: 0/1 to disable SNMP polling\n- display_template: Custom display name template (LibreNMS >= 26.5)\n- display: Custom display name (LibreNMS < 26.5 only; read-only since 26.5, use display_template)\n- type: Device type classification",
+            "type": "object"
+          }
+        },
+        "required": [
+          "hostname",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "devices",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PATCH",
+          "segments": [
+            "'devices'",
+            "hostname"
+          ],
+          "data": "api_payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_ports",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Ports",
+      "description": "List ports for a device from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "columns": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Comma-separated list of columns to return (e.g., 'port_id,ifName,ifAlias,ifOperStatus')"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'ports'"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "device_ports_get",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Ports Get",
+      "description": "Get port info for a device by interface name.\n\nNames like 'Te2/7' can fail by name behind proxies that reject or decode\nthe encoded slash. The port is then looked up by ID instead; that\nresponse has the same shape but lacks the computed rate fields\n(in_rate, out_rate, ...).",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "Device hostname."
+          },
+          "ifname": {
+            "description": "Interface name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname",
+          "ifname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'ports'",
+            "ifname"
+          ]
+        },
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "port_id"
+          ]
+        }
+      ],
+      "helpers": [
+        "lookup_device",
+        "with_port_id_fallback"
+      ]
+    },
+    {
+      "name": "device_availability",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Availability",
+      "description": "Get device availability from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "Device hostname."
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'availability'"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty"
+      ]
+    },
+    {
+      "name": "device_outages",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Outages",
+      "description": "Get device outages from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "Device hostname."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'outages'"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "device_set_maintenance",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "devices",
+        "librenms"
+      ],
+      "title": "Device Set Maintenance",
+      "description": "Set device maintenance in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Maintenance mode payload:\n- duration (required): Duration in \"H:i\" format (e.g., \"02:00\" for 2 hours)\n- title (optional): Maintenance window title\n- notes (optional): Maintenance notes\n- start (optional): Start time in \"Y-m-d H:i:00\" format (default: now)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "hostname",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "devices",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'maintenance'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "devicegroups_list",
+      "module": "devices",
+      "tags": [
+        "device-groups",
+        "global-read",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Devicegroups List",
+      "description": "List all device groups from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "device-groups",
+            "global-read",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devicegroups'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "devicegroup_add",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "device-groups",
+        "librenms"
+      ],
+      "title": "Devicegroup Add",
+      "description": "Add a new device group to LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Device group payload fields:\n- name (required): Group name\n- type (required): \"static\" or \"dynamic\"\n- desc (optional): Group description\n- rules (required if dynamic): Dynamic group rule builder JSON\n- devices (required if static): Array of device IDs\n\nExample static group:\n{\"name\": \"Routers\", \"type\": \"static\", \"devices\": [1, 2, 3]}\n\nExample dynamic group:\n{\"name\": \"Linux Servers\", \"type\": \"dynamic\", \"rules\": {\"condition\": \"AND\", \"rules\": [{\"field\": \"os\", \"operator\": \"equal\", \"value\": \"linux\"}]}}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "device-groups",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'devicegroups'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "devicegroup_update",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "device-groups",
+        "librenms"
+      ],
+      "title": "Devicegroup Update",
+      "description": "Update a device group in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Device group name or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Patchable fields:\n- name: New group name\n- type: \"static\" or \"dynamic\"\n- desc: Group description\n- rules: Dynamic group rules (for dynamic groups)\n- devices: Array of device IDs (for static groups)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "device-groups",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PATCH",
+          "segments": [
+            "'devicegroups'",
+            "ref"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "devicegroup_delete",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "device-groups",
+        "librenms"
+      ],
+      "title": "Devicegroup Delete",
+      "description": "Delete a device group from LibreNMS by name.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Device group name or ID to delete",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "device-groups",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "DELETE",
+          "segments": [
+            "'devicegroups'",
+            "ref"
+          ]
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "devicegroup_devices",
+      "module": "devices",
+      "tags": [
+        "device-groups",
+        "global-read",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Devicegroup Devices",
+      "description": "List devices in a device group from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Device group name or ID",
+            "type": "string"
+          },
+          "full": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Set to true to get complete device data instead of just IDs"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "device-groups",
+            "global-read",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devicegroups'",
+            "ref"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "paginate_list",
+        "route_ref"
+      ]
+    },
+    {
+      "name": "devicegroup_set_maintenance",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "device-groups",
+        "librenms"
+      ],
+      "title": "Devicegroup Set Maintenance",
+      "description": "Set maintenance for a device group in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Device group name or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Maintenance mode payload:\n- duration (required): Duration in \"H:i\" format (e.g., \"02:00\" for 2 hours)\n- title (optional): Maintenance window title\n- notes (optional): Maintenance notes\n- start (optional): Start time in \"Y-m-d H:i:00\" format (default: now)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "device-groups",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'devicegroups'",
+            "ref",
+            "'maintenance'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "devicegroup_add_devices",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "device-groups",
+        "librenms"
+      ],
+      "title": "Devicegroup Add Devices",
+      "description": "Add devices to a device group in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Device group name or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Array of device IDs to add. Format: {\"devices\": [1, 2, 3]}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "device-groups",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'devicegroups'",
+            "ref",
+            "'devices'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "devicegroup_remove_devices",
+      "module": "devices",
+      "tags": [
+        "admin",
+        "device-groups",
+        "librenms"
+      ],
+      "title": "Devicegroup Remove Devices",
+      "description": "Remove devices from a device group in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Device group name or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Array of device IDs to remove. Format: {\"devices\": [1, 2, 3]}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "device-groups",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "DELETE",
+          "segments": [
+            "'devicegroups'",
+            "ref",
+            "'devices'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "device_discover",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms"
+      ],
+      "title": "Device Discover",
+      "description": "Trigger device rediscovery in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'discover'"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_rename",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms"
+      ],
+      "title": "Device Rename",
+      "description": "Rename a device in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Current device hostname or ID",
+            "type": "string"
+          },
+          "new_hostname": {
+            "description": "New hostname for the device",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname",
+          "new_hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PATCH",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'rename'",
+            "new_hostname"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_maintenance_status",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Maintenance Status",
+      "description": "Check if a device is currently in maintenance mode.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'maintenance'"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_vlans",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Vlans",
+      "description": "Get VLANs configured on a specific device.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'vlans'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "device_links",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Links",
+      "description": "Get network links for a specific device.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'links'"
+          ]
+        }
+      ],
+      "helpers": [
+        "lookup_device",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "device_eventlog_add",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms"
+      ],
+      "title": "Device Eventlog Add",
+      "description": "Add a custom event log entry for a device.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Event log entry payload:\n- text (required): Event message text\n- type (optional): Event type/category\n- severity (optional): Severity level (1-5)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "hostname",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'eventlog'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "device_fdb",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "fdb",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Fdb",
+      "description": "List the forwarding database (learned MAC addresses) for a device.\n\nEach entry carries the port_id it was learned on, so this is the\ndevice-wide view of what is plugged into a switch.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or device ID",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "fdb",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'fdb'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "device_nac",
+      "module": "devices",
+      "tags": [
+        "devices",
+        "librenms",
+        "nac",
+        "read-only"
+      ],
+      "title": "Device Nac",
+      "description": "List network access control (802.1X / MAB) sessions on a device.\n\nShows authenticated endpoints per port, including the authentication\nmethod and the assigned VLAN where the device reports it.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or device ID",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "devices",
+            "librenms",
+            "nac",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'nac'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "device_graphs_list",
+      "module": "graphs",
+      "tags": [
+        "graphs",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Graphs List",
+      "description": "List the graph types available for a device.\n\nUse this to discover the values accepted by the `graph_type` argument of\ndevice_graph, for example 'device_icmp_perf' or 'device_poller_perf'.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or device ID",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "graphs",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'graphs'"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty"
+      ]
+    },
+    {
+      "name": "device_graph",
+      "module": "graphs",
+      "tags": [
+        "graphs",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Device Graph",
+      "description": "Render a device-level graph as an image.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or device ID",
+            "type": "string"
+          },
+          "graph_type": {
+            "description": "Graph type, as returned by device_graphs_list (e.g. 'device_icmp_perf', 'device_poller_perf', 'device_availability')",
+            "type": "string"
+          },
+          "from_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start of the time range, either a relative offset such as '-1d', '-6h' or '-1w', or a Unix timestamp. Defaults to the LibreNMS default (-1d)."
+          },
+          "to_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "End of the time range, either a relative offset or a Unix timestamp. Defaults to now."
+          },
+          "width": {
+            "anyOf": [
+              {
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Graph width in pixels."
+          },
+          "height": {
+            "anyOf": [
+              {
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Graph height in pixels."
+          },
+          "legend": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Whether to render the graph legend."
+          }
+        },
+        "required": [
+          "hostname",
+          "graph_type"
+        ],
+        "type": "object"
+      },
+      "outputSchema": null,
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "graphs",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "graph_type"
+          ],
+          "params": "_graph_params(from_time, to_time, width, height, legend)",
+          "binary": true
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_graph",
+      "module": "graphs",
+      "tags": [
+        "graphs",
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Graph",
+      "description": "Render a per-port graph as an image, for example interface traffic.\n\nNames like 'Te2/7' can fail by name behind proxies that reject or decode\nthe encoded slash. For 'bits' this tool then falls back to the port-group\nendpoint, which renders the same traffic data by port ID, so callers\nstill get a graph.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or device ID",
+            "type": "string"
+          },
+          "ifname": {
+            "description": "Interface name as reported by LibreNMS, e.g. 'Po1' or 'Te2/7'",
+            "type": "string"
+          },
+          "graph_type": {
+            "default": "bits",
+            "description": "Graph type: 'bits' (traffic), 'upkts' (unicast packets), 'nupkts' (non-unicast packets), 'errors', or 'etherlike'. The LibreNMS names ('port_bits', ...) are accepted too.",
+            "type": "string"
+          },
+          "from_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start of the time range, either a relative offset such as '-1d', '-6h' or '-1w', or a Unix timestamp. Defaults to the LibreNMS default (-1d)."
+          },
+          "to_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "End of the time range, either a relative offset or a Unix timestamp. Defaults to now."
+          },
+          "width": {
+            "anyOf": [
+              {
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Graph width in pixels."
+          },
+          "height": {
+            "anyOf": [
+              {
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Graph height in pixels."
+          },
+          "legend": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Whether to render the graph legend."
+          }
+        },
+        "required": [
+          "hostname",
+          "ifname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": null,
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "graphs",
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'ports'",
+            "ifname",
+            "librenms_type"
+          ],
+          "params": "params",
+          "binary": true
+        },
+        {
+          "method": "GET",
+          "segments": [
+            "'portgroups'",
+            "'multiport'",
+            "'bits'",
+            "port_id"
+          ],
+          "params": "params",
+          "binary": true
+        }
+      ],
+      "helpers": [
+        "with_port_id_fallback"
+      ]
+    },
+    {
+      "name": "port_group_graph",
+      "module": "graphs",
+      "tags": [
+        "graphs",
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Group Graph",
+      "description": "Render a traffic graph for one or more ports, by port ID.\n\nPlots every supplied port on the same axes, which makes it useful for\ncomparing members of a LAG. Unlike port_graph this takes numeric port\nIDs rather than interface names.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_ids": {
+            "description": "One or more port IDs to plot on a single graph. Resolve names to IDs with ports_search_field or device_ports.",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "from_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start of the time range, either a relative offset such as '-1d', '-6h' or '-1w', or a Unix timestamp. Defaults to the LibreNMS default (-1d)."
+          },
+          "to_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "End of the time range, either a relative offset or a Unix timestamp. Defaults to now."
+          },
+          "width": {
+            "anyOf": [
+              {
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Graph width in pixels."
+          },
+          "height": {
+            "anyOf": [
+              {
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Graph height in pixels."
+          },
+          "legend": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Whether to render the graph legend."
+          }
+        },
+        "required": [
+          "port_ids"
+        ],
+        "type": "object"
+      },
+      "outputSchema": null,
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "graphs",
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'portgroups'",
+            "'multiport'",
+            "'bits'",
+            "ids"
+          ],
+          "params": "_graph_params(from_time, to_time, width, height, legend)",
+          "binary": true
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "health_list",
+      "module": "health",
+      "tags": [
+        "health",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Health List",
+      "description": "List available health graphs for a device.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "health",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'health'"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "health_by_type",
+      "module": "health",
+      "tags": [
+        "health",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Health By Type",
+      "description": "Get health data by sensor type for a device.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "type": {
+            "description": "Sensor type (e.g. temperature, voltage, fanspeed)",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname",
+          "type"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "health",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'health'",
+            "type"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "health_sensor_get",
+      "module": "health",
+      "tags": [
+        "health",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Health Sensor Get",
+      "description": "Get a specific sensor by ID for a device.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "type": {
+            "description": "Sensor type (e.g. temperature, voltage, fanspeed)",
+            "type": "string"
+          },
+          "sensor_id": {
+            "description": "Sensor ID",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname",
+          "type",
+          "sensor_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "health",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'devices'",
+            "hostname",
+            "'health'",
+            "type",
+            "sensor_id"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "lookup_device"
+      ]
+    },
+    {
+      "name": "sensors_list",
+      "module": "health",
+      "tags": [
+        "librenms",
+        "read-only",
+        "sensors"
+      ],
+      "title": "Sensors List",
+      "description": "List all sensors across all devices.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "read-only",
+            "sensors"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'resources'",
+            "'sensors'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "inventory_device",
+      "module": "inventory",
+      "tags": [
+        "inventory",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Inventory Device",
+      "description": "Get inventory for a device from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "ent_physical_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by entity physical class (e.g., chassis, module, port, powerSupply, fan, sensor)"
+          },
+          "ent_physical_contained_in": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by parent entity index"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "inventory",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'inventory'",
+            "hostname"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "inventory_device_flat",
+      "module": "inventory",
+      "tags": [
+        "inventory",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Inventory Device Flat",
+      "description": "Get flattened inventory for a device from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "Device hostname."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "inventory",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'inventory'",
+            "hostname",
+            "'all'"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "locations_list",
+      "module": "locations",
+      "tags": [
+        "global-read",
+        "librenms",
+        "locations",
+        "read-only"
+      ],
+      "title": "Locations List",
+      "description": "List locations from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "locations",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'resources'",
+            "'locations'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "location_add",
+      "module": "locations",
+      "tags": [
+        "admin",
+        "librenms",
+        "locations"
+      ],
+      "title": "Location Add",
+      "description": "Add a new location to LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Location payload fields:\n- location (required): Location name\n- lat (required): Latitude coordinate (decimal degrees)\n- lng (required): Longitude coordinate (decimal degrees)\n- fixed_coordinates (optional): 0 = update from device, 1 = fixed (default: 1)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "locations"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'locations'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "location_delete",
+      "module": "locations",
+      "tags": [
+        "admin",
+        "librenms",
+        "locations"
+      ],
+      "title": "Location Delete",
+      "description": "Delete a location from LibreNMS by ID or name.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "location": {
+            "description": "Location ID or name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "locations"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "DELETE",
+          "segments": [
+            "'locations'",
+            "ref"
+          ]
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "location_edit",
+      "module": "locations",
+      "tags": [
+        "admin",
+        "librenms",
+        "locations"
+      ],
+      "title": "Location Edit",
+      "description": "Edit a location in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "location": {
+            "description": "Location ID or name",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Location patchable fields:\n- lat: Latitude coordinate (decimal degrees)\n- lng: Longitude coordinate (decimal degrees)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "location",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "locations"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PATCH",
+          "segments": [
+            "'locations'",
+            "ref"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "location_get",
+      "module": "locations",
+      "tags": [
+        "global-read",
+        "librenms",
+        "locations",
+        "read-only"
+      ],
+      "title": "Location Get",
+      "description": "Get a specific location from LibreNMS by identifier.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "location": {
+            "description": "Location ID or name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "location"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "locations",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'location'",
+            "ref"
+          ]
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "location_set_maintenance",
+      "module": "locations",
+      "tags": [
+        "admin",
+        "librenms",
+        "locations"
+      ],
+      "title": "Location Set Maintenance",
+      "description": "Set maintenance mode for all devices in a location.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "location": {
+            "description": "Location ID or name",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Maintenance mode payload:\n- duration (required): Duration in \"H:i\" format (e.g., \"02:00\" for 2 hours)\n- title (optional): Maintenance window title\n- notes (optional): Maintenance notes\n- start (optional): Start time in \"Y-m-d H:i:00\" format (default: now)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "location",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "locations"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'locations'",
+            "ref",
+            "'maintenance'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "logs_eventlog",
+      "module": "logs",
+      "tags": [
+        "global-read",
+        "librenms",
+        "logs",
+        "read-only"
+      ],
+      "title": "Logs Eventlog",
+      "description": "Get event logs for a device from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Device hostname or ID. Omit for entries from all devices."
+          },
+          "start": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "from_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start timestamp filter (Unix timestamp or datetime string)"
+          },
+          "to_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "End timestamp filter (Unix timestamp or datetime string)"
+          },
+          "sortorder": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Sort order: ASC or DESC"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "logs",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'logs'",
+            "log_type",
+            "*host"
+          ],
+          "params": "params",
+          "via": "_list_logs"
+        }
+      ],
+      "helpers": [
+        "lookup_device"
+      ]
+    },
+    {
+      "name": "logs_syslog",
+      "module": "logs",
+      "tags": [
+        "global-read",
+        "librenms",
+        "logs",
+        "read-only"
+      ],
+      "title": "Logs Syslog",
+      "description": "Get syslogs for a device from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Device hostname or ID. Omit for entries from all devices."
+          },
+          "start": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "from_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start timestamp filter (Unix timestamp or datetime string)"
+          },
+          "to_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "End timestamp filter (Unix timestamp or datetime string)"
+          },
+          "sortorder": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Sort order: ASC or DESC"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "logs",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'logs'",
+            "log_type",
+            "*host"
+          ],
+          "params": "params",
+          "via": "_list_logs"
+        }
+      ],
+      "helpers": [
+        "lookup_device"
+      ]
+    },
+    {
+      "name": "logs_alertlog",
+      "module": "logs",
+      "tags": [
+        "global-read",
+        "librenms",
+        "logs",
+        "read-only"
+      ],
+      "title": "Logs Alertlog",
+      "description": "Get alert logs for a device from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Device hostname or ID. Omit for entries from all devices."
+          },
+          "start": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "from_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start timestamp filter (Unix timestamp or datetime string)"
+          },
+          "to_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "End timestamp filter (Unix timestamp or datetime string)"
+          },
+          "sortorder": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Sort order: ASC or DESC"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "logs",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'logs'",
+            "log_type",
+            "*host"
+          ],
+          "params": "params",
+          "via": "_list_logs"
+        }
+      ],
+      "helpers": [
+        "lookup_device"
+      ]
+    },
+    {
+      "name": "logs_authlog",
+      "module": "logs",
+      "tags": [
+        "global-read",
+        "librenms",
+        "logs",
+        "read-only"
+      ],
+      "title": "Logs Authlog",
+      "description": "Get authentication logs from LibreNMS.\n\nAuth logs are server-wide rather than per-device, so this takes no hostname.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "start": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "from_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Start timestamp filter (Unix timestamp or datetime string)"
+          },
+          "to_ts": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "End timestamp filter (Unix timestamp or datetime string)"
+          },
+          "sortorder": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Sort order: ASC or DESC"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "logs",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'logs'",
+            "log_type",
+            "*host"
+          ],
+          "params": "params",
+          "via": "_list_logs"
+        }
+      ],
+      "helpers": [
+        "lookup_device"
+      ]
+    },
+    {
+      "name": "logs_syslogsink",
+      "module": "logs",
+      "tags": [
+        "admin",
+        "librenms",
+        "logs"
+      ],
+      "title": "Logs Syslogsink",
+      "description": "Add a syslog entry to LibreNMS via API sink.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            ],
+            "description": "JSON syslog message(s) to ingest into LibreNMS syslog storage. Accepts a single object or an array of objects."
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "logs"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'syslogsink'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "arp_search",
+      "module": "network",
+      "tags": [
+        "arp",
+        "global-read",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Arp Search",
+      "description": "Retrieve ARP entries from LibreNMS by search query.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "description": "Search string for ARP entries. Supports an IPv4 address, MAC address, IPv4 CIDR notation (e.g. 10.0.0.0/24), or \"all\" (requires the device parameter; lists all entries on that device)",
+            "type": "string"
+          },
+          "device": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Device hostname or ID to list entries for. Required with query \"all\" and only valid with it; any other combination returns an error."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "arp",
+            "global-read",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "*segments"
+          ],
+          "params": "params"
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "bgp_sessions",
+      "module": "network",
+      "tags": [
+        "global-read",
+        "librenms",
+        "read-only",
+        "routing"
+      ],
+      "title": "Bgp Sessions",
+      "description": "List BGP sessions from LibreNMS with optional filters.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by device hostname or ID. An unknown device returns an error."
+          },
+          "asn": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by local ASN"
+          },
+          "remote_asn": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by remote ASN"
+          },
+          "remote_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by remote IP address"
+          },
+          "local_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by local IP address"
+          },
+          "bgp_descr": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by BGP description (SQL LIKE)"
+          },
+          "bgp_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by BGP state (e.g., established)"
+          },
+          "bgp_adminstate": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by admin state (start, stop, running)"
+          },
+          "bgp_family": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by address family: 4 (IPv4) or 6 (IPv6)"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "read-only",
+            "routing"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bgp'"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "lookup_device",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "bgp_session_get",
+      "module": "network",
+      "tags": [
+        "global-read",
+        "librenms",
+        "read-only",
+        "routing"
+      ],
+      "title": "Bgp Session Get",
+      "description": "Get BGP session from LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bgp_id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "BGP session ID."
+          }
+        },
+        "required": [
+          "bgp_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "read-only",
+            "routing"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'bgp'",
+            "bgp_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "bgp_session_edit",
+      "module": "network",
+      "tags": [
+        "admin",
+        "librenms",
+        "routing"
+      ],
+      "title": "Bgp Session Edit",
+      "description": "Edit BGP session in LibreNMS by ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bgp_id": {
+            "description": "BGP session ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "BGP session payload. Format: {\"bgp_descr\": \"description\"}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "bgp_id",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "routing"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'bgp'",
+            "bgp_id"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "routing_ip_addresses",
+      "module": "network",
+      "tags": [
+        "global-read",
+        "librenms",
+        "read-only",
+        "routing"
+      ],
+      "title": "Routing Ip Addresses",
+      "description": "List all IP addresses from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "read-only",
+            "routing"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'resources'",
+            "'ip'",
+            "'addresses'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "switching_vlans",
+      "module": "network",
+      "tags": [
+        "librenms",
+        "read-only",
+        "switching"
+      ],
+      "title": "Switching Vlans",
+      "description": "List all VLANs from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "read-only",
+            "switching"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'resources'",
+            "'vlans'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "switching_links",
+      "module": "network",
+      "tags": [
+        "librenms",
+        "read-only",
+        "switching"
+      ],
+      "title": "Switching Links",
+      "description": "List all links from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "read-only",
+            "switching"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'resources'",
+            "'links'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "fdb_lookup",
+      "module": "network",
+      "tags": [
+        "fdb",
+        "librenms",
+        "read-only"
+      ],
+      "title": "Fdb Lookup",
+      "description": "Look up a MAC address in the forwarding database.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "mac": {
+            "description": "MAC address to look up. Accepts multiple formats: aa:bb:cc:dd:ee:ff, aabb.ccdd.eeff, or aabbccddeeff",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mac"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "fdb",
+            "librenms",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'resources'",
+            "'fdb'",
+            "mac"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "ospf_list",
+      "module": "network",
+      "tags": [
+        "global-read",
+        "librenms",
+        "ospf",
+        "read-only",
+        "routing"
+      ],
+      "title": "Ospf List",
+      "description": "List all OSPF instances from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "ospf",
+            "read-only",
+            "routing"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ospf'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "ospf_ports",
+      "module": "network",
+      "tags": [
+        "global-read",
+        "librenms",
+        "ospf",
+        "read-only",
+        "routing"
+      ],
+      "title": "Ospf Ports",
+      "description": "List all OSPF ports/interfaces from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "ospf",
+            "read-only",
+            "routing"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ospf_ports'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "vrf_list",
+      "module": "network",
+      "tags": [
+        "librenms",
+        "read-only",
+        "routing",
+        "vrf"
+      ],
+      "title": "Vrf List",
+      "description": "List all VRF (Virtual Routing and Forwarding) instances from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "read-only",
+            "routing",
+            "vrf"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'routing'",
+            "'vrf'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "nac_list",
+      "module": "network",
+      "tags": [
+        "librenms",
+        "nac",
+        "network",
+        "read-only"
+      ],
+      "title": "Nac List",
+      "description": "List network access control (802.1X / MAB) sessions across all devices.\n\nNote that LibreNMS answers with a 404 and \"Nac entry does not exist\"\nrather than an empty list when nothing matches.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "mac": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter to a single MAC address. Optional."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "nac",
+            "network",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'resources'",
+            "'nac'",
+            "*optional_segment(mac)"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "oxidized_list",
+      "module": "oxidized",
+      "tags": [
+        "librenms",
+        "oxidized",
+        "read-only"
+      ],
+      "title": "Oxidized List",
+      "description": "List devices tracked by Oxidized for config backup.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by device hostname or ID. Optional. An unknown device returns an error."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "oxidized",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'oxidized'",
+            "*host"
+          ]
+        },
+        {
+          "method": "GET",
+          "segments": [
+            "'oxidized'",
+            "stored"
+          ]
+        }
+      ],
+      "helpers": [
+        "lookup_device",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "oxidized_config_get",
+      "module": "oxidized",
+      "tags": [
+        "librenms",
+        "oxidized",
+        "read-only"
+      ],
+      "title": "Oxidized Config Get",
+      "description": "Get the stored device configuration from Oxidized for a specific device.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname",
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "oxidized",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'oxidized'",
+            "'config'",
+            "hostname"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "oxidized_config_search",
+      "module": "oxidized",
+      "tags": [
+        "librenms",
+        "oxidized",
+        "read-only"
+      ],
+      "title": "Oxidized Config Search",
+      "description": "Search all Oxidized device configurations for a string.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "search": {
+            "description": "Search string to look for in all stored device configs (e.g. an IP address, interface name, ACL name, or any config keyword). Must not contain '/': LibreNMS cannot route it, so search for a part without it (e.g. '10.0.0.0' instead of '10.0.0.0/24').",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "search"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "oxidized",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'oxidized'",
+            "'config'",
+            "'search'",
+            "search"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "poller_group_get",
+      "module": "pollers",
+      "tags": [
+        "global-read",
+        "librenms",
+        "poller-groups",
+        "read-only"
+      ],
+      "title": "Poller Group Get",
+      "description": "Get poller group(s) from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "poller_group": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Poller group ID or name. Omit (or pass 'all') to list every poller group; a group literally named 'all' must be fetched by its ID."
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "poller-groups",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'poller_group'",
+            "*group"
+          ]
+        }
+      ],
+      "helpers": [
+        "route_ref"
+      ]
+    },
+    {
+      "name": "port_security_list",
+      "module": "port_security",
+      "tags": [
+        "librenms",
+        "port-security",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Security List",
+      "description": "List port security configuration across all devices.\n\nCovers switchport port-security state such as the maximum number of\nlearned MAC addresses, violation mode and current status.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "port-security",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'port_security'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "port_security_device",
+      "module": "port_security",
+      "tags": [
+        "librenms",
+        "port-security",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Security Device",
+      "description": "Get port security configuration for every port on a device.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or device ID",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "port-security",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'port_security'",
+            "'device'",
+            "hostname"
+          ]
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "port_security_port",
+      "module": "port_security",
+      "tags": [
+        "librenms",
+        "port-security",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Security Port",
+      "description": "Get port security configuration for a single port.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_id": {
+            "description": "Port ID",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "port_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "port-security",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'port_security'",
+            "'port'",
+            "port_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "ports_list",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Ports List",
+      "description": "Get all ports from LibreNMS with optional filters.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Query parameters for filtering ports:\n- columns: Comma-separated list of fields to return (e.g., \"port_id,ifName,ifAlias\")\n- device_id: Only return ports of this device (device ID or hostname)\n\nAvailable columns: port_id, device_id, ifDescr, ifName, ifAlias, ifType, ifSpeed, ifOperStatus, ifAdminStatus, etc."
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "*path"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "ports_search",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Ports Search",
+      "description": "Search ports in LibreNMS by search string.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "search": {
+            "description": "Search string - searches ifAlias, ifDescr, and ifName fields",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "search"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "'search'",
+            "PORT_SEARCH_DEFAULT_FIELDS",
+            "search"
+          ]
+        },
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "'search'",
+            "search"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "ports_search_field",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Ports Search Field",
+      "description": "Search ports in LibreNMS by specific field.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "description": "Field to search: ifAlias, ifDescr, ifName, ifType, etc.",
+            "type": "string"
+          },
+          "search": {
+            "description": "Search term. \"0\" is not supported: LibreNMS treats it as empty.",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "field",
+          "search"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "'search'",
+            "field",
+            "search"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "ports_search_mac",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Ports Search Mac",
+      "description": "Find the switch ports where a MAC address was learned (forwarding table).\n\nThis searches LibreNMS's FDB data, i.e. where a host's MAC appears on\nthe network, not the ports' own hardware addresses: a port's own MAC is\nnot found unless another device learned it. Results are ordered by how\nmany MACs each port has learned, so the access port the host is\nplugged into usually comes first.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "mac": {
+            "description": "MAC address of a host to locate (looked up in the forwarding tables, not ports' own MACs). Accepts aa:bb:cc:dd:ee:ff, aa-bb-cc-dd-ee-ff, aabb.ccdd.eeff, or aabbccddeeff",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "mac"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "'mac'",
+            "mac"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "port_get",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Get",
+      "description": "Get port info from LibreNMS by port ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Port ID."
+          }
+        },
+        "required": [
+          "port_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "port_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_ip_info",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Ip Info",
+      "description": "Get port IP info from LibreNMS by port ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Port ID."
+          }
+        },
+        "required": [
+          "port_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "port_id",
+            "'ip'"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_transceiver",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Transceiver",
+      "description": "Get port transceiver info from LibreNMS by port ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Port ID."
+          }
+        },
+        "required": [
+          "port_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "port_id",
+            "'transceiver'"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_description_get",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Description Get",
+      "description": "Get port description from LibreNMS by port ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Port ID."
+          }
+        },
+        "required": [
+          "port_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "port_id",
+            "'description'"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_description_update",
+      "module": "ports",
+      "tags": [
+        "librenms",
+        "ports"
+      ],
+      "title": "Port Description Update",
+      "description": "Update port description in LibreNMS by port ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_id": {
+            "description": "Port ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Port description payload. Format: {\"description\": \"new description\"}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "port_id",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "ports"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PATCH",
+          "segments": [
+            "'ports'",
+            "port_id",
+            "'description'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_groups_list",
+      "module": "ports",
+      "tags": [
+        "global-read",
+        "librenms",
+        "port-groups",
+        "read-only"
+      ],
+      "title": "Port Groups List",
+      "description": "List port groups from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "port-groups",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'port_groups'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "port_group_add",
+      "module": "ports",
+      "tags": [
+        "admin",
+        "librenms",
+        "port-groups"
+      ],
+      "title": "Port Group Add",
+      "description": "Add a port group to LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "additionalProperties": true,
+            "description": "Port group payload:\n- name (required): Port group name\n- desc (optional): Port group description",
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "port-groups"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'port_groups'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_group_list_ports",
+      "module": "ports",
+      "tags": [
+        "global-read",
+        "librenms",
+        "port-groups",
+        "read-only"
+      ],
+      "title": "Port Group List Ports",
+      "description": "List ports in a port group from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Port group name or ID",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "port-groups",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'port_groups'",
+            "ref"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list",
+        "route_ref"
+      ]
+    },
+    {
+      "name": "port_group_assign",
+      "module": "ports",
+      "tags": [
+        "admin",
+        "librenms",
+        "port-groups"
+      ],
+      "title": "Port Group Assign",
+      "description": "Assign ports to a port group in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_group_id": {
+            "description": "Port group ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Port IDs to assign. Format: {\"port_ids\": [1, 2, 3]}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "port_group_id",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "port-groups"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'port_groups'",
+            "port_group_id",
+            "'assign'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_group_remove",
+      "module": "ports",
+      "tags": [
+        "admin",
+        "librenms",
+        "port-groups"
+      ],
+      "title": "Port Group Remove",
+      "description": "Remove ports from a port group in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_group_id": {
+            "description": "Port group ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Port IDs to remove. Format: {\"port_ids\": [1, 2, 3]}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "port_group_id",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "port-groups"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'port_groups'",
+            "port_group_id",
+            "'remove'"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "port_fdb",
+      "module": "ports",
+      "tags": [
+        "fdb",
+        "librenms",
+        "ports",
+        "read-only"
+      ],
+      "title": "Port Fdb",
+      "description": "List the MAC addresses learned on a port, from the forwarding database.\n\nThis answers \"what is connected to this port\". To go the other way and\nfind which port a known MAC sits on, use fdb_lookup instead.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "port_id": {
+            "description": "Port ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "port_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "fdb",
+            "librenms",
+            "ports",
+            "read-only"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ports'",
+            "port_id",
+            "'fdb'"
+          ]
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "services_list",
+      "module": "services",
+      "tags": [
+        "global-read",
+        "librenms",
+        "read-only",
+        "services"
+      ],
+      "title": "Services List",
+      "description": "List all services from LibreNMS with optional filters.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by state: 0=Ok, 1=Warning, 2=Critical"
+          },
+          "service_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by service type (SQL LIKE pattern)"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "read-only",
+            "services"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'services'"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "services_for_device",
+      "module": "services",
+      "tags": [
+        "global-read",
+        "librenms",
+        "read-only",
+        "services"
+      ],
+      "title": "Services For Device",
+      "description": "Get services for a device from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by state: 0=Ok, 1=Warning, 2=Critical"
+          },
+          "service_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Filter by service type (SQL LIKE pattern)"
+          },
+          "limit": {
+            "default": 100,
+            "description": "Maximum number of results to return",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "Number of results to skip (offset) for pagination",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hostname"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "global-read",
+            "librenms",
+            "read-only",
+            "services"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'services'",
+            "hostname"
+          ],
+          "params": "params or None"
+        }
+      ],
+      "helpers": [
+        "device_error_if_empty",
+        "paginate_list"
+      ]
+    },
+    {
+      "name": "service_add",
+      "module": "services",
+      "tags": [
+        "admin",
+        "librenms",
+        "services"
+      ],
+      "title": "Service Add",
+      "description": "Add a service for a device in LibreNMS.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "hostname": {
+            "description": "Device hostname or ID",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Service monitoring payload:\n- type (required): Service check type (e.g., \"http\", \"https\", \"dns\", \"ping\", \"smtp\", \"ssh\", \"tcp\", \"icmp\")\n- ip (optional): Service IP address or hostname to check (defaults to the device's poller target: its overwrite IP if set, else its hostname)\n- desc (optional): Service description\n- param (optional): Check parameters/arguments (service-specific)\n- ignore (optional): Exclude from alerts (0/1)\n\nExample: {\"type\": \"http\", \"desc\": \"Web Server\", \"param\": \"-p 8080 -u /health\"}",
+            "type": "object"
+          }
+        },
+        "required": [
+          "hostname",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "services"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "POST",
+          "segments": [
+            "'services'",
+            "hostname"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": [
+        "lookup_device"
+      ]
+    },
+    {
+      "name": "service_edit",
+      "module": "services",
+      "tags": [
+        "admin",
+        "librenms",
+        "services"
+      ],
+      "title": "Service Edit",
+      "description": "Edit a service in LibreNMS by service ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "service_id": {
+            "description": "Service ID",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Service patchable fields:\n- service_ip: Service IP address\n- service_desc: Service description\n- service_param: Service check parameters\n- service_disabled: 0/1 to enable/disable\n- service_ignore: 0/1 to ignore in alerts",
+            "type": "object"
+          }
+        },
+        "required": [
+          "service_id",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "services"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "PATCH",
+          "segments": [
+            "'services'",
+            "service_id"
+          ],
+          "data": "payload"
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "service_delete",
+      "module": "services",
+      "tags": [
+        "admin",
+        "librenms",
+        "services"
+      ],
+      "title": "Service Delete",
+      "description": "Delete a service from LibreNMS by service ID.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "service_id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Service ID."
+          }
+        },
+        "required": [
+          "service_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "admin",
+            "librenms",
+            "services"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "DELETE",
+          "segments": [
+            "'services'",
+            "service_id"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "system_info",
+      "module": "system",
+      "tags": [
+        "librenms",
+        "read-only",
+        "system"
+      ],
+      "title": "System Info",
+      "description": "Get system info from LibreNMS.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "read-only",
+            "system"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'system'"
+          ]
+        }
+      ],
+      "helpers": []
+    },
+    {
+      "name": "ping",
+      "module": "system",
+      "tags": [
+        "librenms",
+        "read-only",
+        "system"
+      ],
+      "title": "Ping",
+      "description": "Simple API health check - ping LibreNMS API.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "meta": {
+        "fastmcp": {
+          "tags": [
+            "librenms",
+            "read-only",
+            "system"
+          ]
+        }
+      },
+      "httpOperations": [
+        {
+          "method": "GET",
+          "segments": [
+            "'ping'"
+          ]
+        }
+      ],
+      "helpers": []
+    }
+  ]
+}

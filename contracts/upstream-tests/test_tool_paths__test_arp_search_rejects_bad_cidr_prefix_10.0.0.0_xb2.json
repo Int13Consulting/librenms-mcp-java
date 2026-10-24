@@ -1,0 +1,25 @@
+{
+  "test": "tests/test_tool_paths.py::test_arp_search_rejects_bad_cidr_prefix[10.0.0.0/\\xb2]",
+  "calls": [
+    {
+      "tool": "arp_search",
+      "arguments": {
+        "query": "10.0.0.0/²"
+      },
+      "requests": [],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Invalid CIDR notation: '10.0.0.0/²'\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Invalid CIDR notation: '10.0.0.0/²'"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "tool": "switching_vlans",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/resources/vlans",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "vlans": [
+                {
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "vlan_vlan": 1,
+                  "vlan_domain": 1,
+                  "vlan_name": "default",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 2,
+                  "device_id": 1,
+                  "vlan_vlan": 10,
+                  "vlan_domain": 1,
+                  "vlan_name": "APMGMT",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 3,
+                  "device_id": 1,
+                  "vlan_vlan": 11,
+                  "vlan_domain": 1,
+                  "vlan_name": "Thoughtfire Network",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "vlan_vlan": 21,
+                  "vlan_domain": 1,
+                  "vlan_name": "IoT Devices",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 5,
+                  "device_id": 1,
+                  "vlan_vlan": 31,
+                  "vlan_domain": 1,
+                  "vlan_name": "Voice Devices",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "vlan_vlan": 50,
+                  "vlan_domain": 1,
+                  "vlan_name": "Servers",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "vlan_vlan": 60,
+                  "vlan_domain": 1,
+                  "vlan_name": "Int13 Wifi",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 8,
+                  "device_id": 1,
+                  "vlan_vlan": 70,
+                  "vlan_domain": 1,
+                  "vlan_name": "Lab Network",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 9,
+                  "device_id": 1,
+                  "vlan_vlan": 80,
+                  "vlan_domain": 1,
+                  "vlan_name": "Bitloop Prod",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 10,
+                  "device_id": 1,
+                  "vlan_vlan": 100,
+                  "vlan_domain": 1,
+                  "vlan_name": "Cloudflare DMZ",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 11,
+                  "device_id": 1,
+                  "vlan_vlan": 101,
+                  "vlan_domain": 1,
+                  "vlan_name": "Int13 Guest",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 12,
+                  "device_id": 1,
+                  "vlan_vlan": 110,
+                  "vlan_domain": 1,
+                  "vlan_name": "ROUTE_SNET",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 13,
+                  "device_id": 1,
+                  "vlan_vlan": 120,
+                  "vlan_domain": 1,
+                  "vlan_name": "SOCKS_VLAN",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 14,
+                  "device_id": 1,
+                  "vlan_vlan": 800,
+                  "vlan_domain": 1,
+                  "vlan_name": "Rogers LTE Private",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 15,
+                  "device_id": 1,
+                  "vlan_vlan": 801,
+                  "vlan_domain": 1,
+                  "vlan_name": "VLAN0801",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 16,
+                  "device_id": 1,
+                  "vlan_vlan": 850,
+                  "vlan_domain": 1,
+                  "vlan_name": "VIRGIN-WAN",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 17,
+                  "device_id": 1,
+                  "vlan_vlan": 900,
+                  "vlan_domain": 1,
+                  "vlan_name": "Bell PPPoE",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                },
+                {
+                  "vlan_id": 18,
+                  "device_id": 1,
+                  "vlan_vlan": 999,
+                  "vlan_domain": 1,
+                  "vlan_name": "Cable WAN",
+                  "vlan_type": "ethernet",
+                  "vlan_state": 1
+                }
+              ],
+              "count": 18
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":18,\"vlans\":[{\"vlan_id\":1,\"device_id\":1,\"vlan_vlan\":1,\"vlan_domain\":1,\"vlan_name\":\"default\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":2,\"device_id\":1,\"vlan_vlan\":10,\"vlan_domain\":1,\"vlan_name\":\"APMGMT\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":3,\"device_id\":1,\"vlan_vlan\":11,\"vlan_domain\":1,\"vlan_name\":\"Thoughtfire Network\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":4,\"device_id\":1,\"vlan_vlan\":21,\"vlan_domain\":1,\"vlan_name\":\"IoT Devices\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":5,\"device_id\":1,\"vlan_vlan\":31,\"vlan_domain\":1,\"vlan_name\":\"Voice Devices\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":6,\"device_id\":1,\"vlan_vlan\":50,\"vlan_domain\":1,\"vlan_name\":\"Servers\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":7,\"device_id\":1,\"vlan_vlan\":60,\"vlan_domain\":1,\"vlan_name\":\"Int13 Wifi\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":8,\"device_id\":1,\"vlan_vlan\":70,\"vlan_domain\":1,\"vlan_name\":\"Lab Network\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":9,\"device_id\":1,\"vlan_vlan\":80,\"vlan_domain\":1,\"vlan_name\":\"Bitloop Prod\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":10,\"device_id\":1,\"vlan_vlan\":100,\"vlan_domain\":1,\"vlan_name\":\"Cloudflare DMZ\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":11,\"device_id\":1,\"vlan_vlan\":101,\"vlan_domain\":1,\"vlan_name\":\"Int13 Guest\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":12,\"device_id\":1,\"vlan_vlan\":110,\"vlan_domain\":1,\"vlan_name\":\"ROUTE_SNET\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":13,\"device_id\":1,\"vlan_vlan\":120,\"vlan_domain\":1,\"vlan_name\":\"SOCKS_VLAN\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":14,\"device_id\":1,\"vlan_vlan\":800,\"vlan_domain\":1,\"vlan_name\":\"Rogers LTE Private\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":15,\"device_id\":1,\"vlan_vlan\":801,\"vlan_domain\":1,\"vlan_name\":\"VLAN0801\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":16,\"device_id\":1,\"vlan_vlan\":850,\"vlan_domain\":1,\"vlan_name\":\"VIRGIN-WAN\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":17,\"device_id\":1,\"vlan_vlan\":900,\"vlan_domain\":1,\"vlan_name\":\"Bell PPPoE\",\"vlan_type\":\"ethernet\",\"vlan_state\":1},{\"vlan_id\":18,\"device_id\":1,\"vlan_vlan\":999,\"vlan_domain\":1,\"vlan_name\":\"Cable WAN\",\"vlan_type\":\"ethernet\",\"vlan_state\":1}],\"total\":18,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 18,
+          "vlans": [
+            {
+              "vlan_id": 1,
+              "device_id": 1,
+              "vlan_vlan": 1,
+              "vlan_domain": 1,
+              "vlan_name": "default",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 2,
+              "device_id": 1,
+              "vlan_vlan": 10,
+              "vlan_domain": 1,
+              "vlan_name": "APMGMT",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 3,
+              "device_id": 1,
+              "vlan_vlan": 11,
+              "vlan_domain": 1,
+              "vlan_name": "Thoughtfire Network",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 4,
+              "device_id": 1,
+              "vlan_vlan": 21,
+              "vlan_domain": 1,
+              "vlan_name": "IoT Devices",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 5,
+              "device_id": 1,
+              "vlan_vlan": 31,
+              "vlan_domain": 1,
+              "vlan_name": "Voice Devices",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 6,
+              "device_id": 1,
+              "vlan_vlan": 50,
+              "vlan_domain": 1,
+              "vlan_name": "Servers",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 7,
+              "device_id": 1,
+              "vlan_vlan": 60,
+              "vlan_domain": 1,
+              "vlan_name": "Int13 Wifi",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 8,
+              "device_id": 1,
+              "vlan_vlan": 70,
+              "vlan_domain": 1,
+              "vlan_name": "Lab Network",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 9,
+              "device_id": 1,
+              "vlan_vlan": 80,
+              "vlan_domain": 1,
+              "vlan_name": "Bitloop Prod",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 10,
+              "device_id": 1,
+              "vlan_vlan": 100,
+              "vlan_domain": 1,
+              "vlan_name": "Cloudflare DMZ",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 11,
+              "device_id": 1,
+              "vlan_vlan": 101,
+              "vlan_domain": 1,
+              "vlan_name": "Int13 Guest",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 12,
+              "device_id": 1,
+              "vlan_vlan": 110,
+              "vlan_domain": 1,
+              "vlan_name": "ROUTE_SNET",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 13,
+              "device_id": 1,
+              "vlan_vlan": 120,
+              "vlan_domain": 1,
+              "vlan_name": "SOCKS_VLAN",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 14,
+              "device_id": 1,
+              "vlan_vlan": 800,
+              "vlan_domain": 1,
+              "vlan_name": "Rogers LTE Private",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 15,
+              "device_id": 1,
+              "vlan_vlan": 801,
+              "vlan_domain": 1,
+              "vlan_name": "VLAN0801",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 16,
+              "device_id": 1,
+              "vlan_vlan": 850,
+              "vlan_domain": 1,
+              "vlan_name": "VIRGIN-WAN",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 17,
+              "device_id": 1,
+              "vlan_vlan": 900,
+              "vlan_domain": 1,
+              "vlan_name": "Bell PPPoE",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            },
+            {
+              "vlan_id": 18,
+              "device_id": 1,
+              "vlan_vlan": 999,
+              "vlan_domain": 1,
+              "vlan_name": "Cable WAN",
+              "vlan_type": "ethernet",
+              "vlan_state": 1
+            }
+          ],
+          "total": 18,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "test": "tests/test_tool_paths.py::test_device_links_checks_the_device_first",
+  "calls": [
+    {
+      "tool": "device_links",
+      "arguments": {
+        "hostname": "typo"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/typo",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Device typo does not exist"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Device typo does not exist\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Device typo does not exist"
+        }
+      }
+    }
+  ]
+}

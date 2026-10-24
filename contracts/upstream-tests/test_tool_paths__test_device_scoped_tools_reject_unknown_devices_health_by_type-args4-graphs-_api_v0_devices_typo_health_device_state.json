@@ -1,0 +1,53 @@
+{
+  "test": "tests/test_tool_paths.py::test_device_scoped_tools_reject_unknown_devices[health_by_type-args4-graphs-/api/v0/devices/typo/health/device_state]",
+  "calls": [
+    {
+      "tool": "health_by_type",
+      "arguments": {
+        "hostname": "typo",
+        "type": "device_state"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/typo/health/device_state",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "graphs": []
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/typo",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Device typo does not exist"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Device typo does not exist\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Device typo does not exist"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "tool": "device_ports",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "hostname": "192.0.2.1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/192.0.2.1/ports",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "ports": [
+                {
+                  "ifName": "Vl1"
+                },
+                {
+                  "ifName": "Gi0/1"
+                },
+                {
+                  "ifName": "Gi0/2"
+                },
+                {
+                  "ifName": "Gi0/3"
+                },
+                {
+                  "ifName": "Gi0/4"
+                },
+                {
+                  "ifName": "Gi0/5"
+                },
+                {
+                  "ifName": "Gi0/6"
+                },
+                {
+                  "ifName": "Gi0/7"
+                },
+                {
+                  "ifName": "Gi0/8"
+                },
+                {
+                  "ifName": "Gi0/9"
+                },
+                {
+                  "ifName": "Gi0/10"
+                },
+                {
+                  "ifName": "Gi0/11"
+                },
+                {
+                  "ifName": "Gi0/12"
+                },
+                {
+                  "ifName": "Gi0/13"
+                },
+                {
+                  "ifName": "Gi0/14"
+                },
+                {
+                  "ifName": "Gi0/15"
+                },
+                {
+                  "ifName": "Gi0/16"
+                },
+                {
+                  "ifName": "Gi0/17"
+                },
+                {
+                  "ifName": "Gi0/18"
+                },
+                {
+                  "ifName": "Gi0/19"
+                },
+                {
+                  "ifName": "Gi0/20"
+                },
+                {
+                  "ifName": "Gi0/21"
+                },
+                {
+                  "ifName": "Gi0/22"
+                },
+                {
+                  "ifName": "Gi0/23"
+                },
+                {
+                  "ifName": "Gi0/24"
+                },
+                {
+                  "ifName": "Gi0/25"
+                },
+                {
+                  "ifName": "Gi0/26"
+                },
+                {
+                  "ifName": "Gi0/27"
+                },
+                {
+                  "ifName": "Gi0/28"
+                },
+                {
+                  "ifName": "Nu0"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"ports\":[{\"ifName\":\"Vl1\"},{\"ifName\":\"Gi0/1\"},{\"ifName\":\"Gi0/2\"},{\"ifName\":\"Gi0/3\"},{\"ifName\":\"Gi0/4\"},{\"ifName\":\"Gi0/5\"},{\"ifName\":\"Gi0/6\"},{\"ifName\":\"Gi0/7\"},{\"ifName\":\"Gi0/8\"},{\"ifName\":\"Gi0/9\"},{\"ifName\":\"Gi0/10\"},{\"ifName\":\"Gi0/11\"},{\"ifName\":\"Gi0/12\"},{\"ifName\":\"Gi0/13\"},{\"ifName\":\"Gi0/14\"},{\"ifName\":\"Gi0/15\"},{\"ifName\":\"Gi0/16\"},{\"ifName\":\"Gi0/17\"},{\"ifName\":\"Gi0/18\"},{\"ifName\":\"Gi0/19\"},{\"ifName\":\"Gi0/20\"},{\"ifName\":\"Gi0/21\"},{\"ifName\":\"Gi0/22\"},{\"ifName\":\"Gi0/23\"},{\"ifName\":\"Gi0/24\"},{\"ifName\":\"Gi0/25\"},{\"ifName\":\"Gi0/26\"},{\"ifName\":\"Gi0/27\"},{\"ifName\":\"Gi0/28\"},{\"ifName\":\"Nu0\"}],\"count\":30,\"total\":30,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "ports": [
+            {
+              "ifName": "Vl1"
+            },
+            {
+              "ifName": "Gi0/1"
+            },
+            {
+              "ifName": "Gi0/2"
+            },
+            {
+              "ifName": "Gi0/3"
+            },
+            {
+              "ifName": "Gi0/4"
+            },
+            {
+              "ifName": "Gi0/5"
+            },
+            {
+              "ifName": "Gi0/6"
+            },
+            {
+              "ifName": "Gi0/7"
+            },
+            {
+              "ifName": "Gi0/8"
+            },
+            {
+              "ifName": "Gi0/9"
+            },
+            {
+              "ifName": "Gi0/10"
+            },
+            {
+              "ifName": "Gi0/11"
+            },
+            {
+              "ifName": "Gi0/12"
+            },
+            {
+              "ifName": "Gi0/13"
+            },
+            {
+              "ifName": "Gi0/14"
+            },
+            {
+              "ifName": "Gi0/15"
+            },
+            {
+              "ifName": "Gi0/16"
+            },
+            {
+              "ifName": "Gi0/17"
+            },
+            {
+              "ifName": "Gi0/18"
+            },
+            {
+              "ifName": "Gi0/19"
+            },
+            {
+              "ifName": "Gi0/20"
+            },
+            {
+              "ifName": "Gi0/21"
+            },
+            {
+              "ifName": "Gi0/22"
+            },
+            {
+              "ifName": "Gi0/23"
+            },
+            {
+              "ifName": "Gi0/24"
+            },
+            {
+              "ifName": "Gi0/25"
+            },
+            {
+              "ifName": "Gi0/26"
+            },
+            {
+              "ifName": "Gi0/27"
+            },
+            {
+              "ifName": "Gi0/28"
+            },
+            {
+              "ifName": "Nu0"
+            }
+          ],
+          "count": 30,
+          "total": 30,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  }
+}

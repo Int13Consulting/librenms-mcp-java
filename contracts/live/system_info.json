@@ -1,0 +1,65 @@
+{
+  "tool": "system_info",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/system",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "system": [
+                {
+                  "local_ver": "26.11.0-dev.44+3fd4a769a5",
+                  "local_sha": "3fd4a769a508916c65f02d7dffd991c2318bffac",
+                  "local_date": "2026-10-24T17:05:58+00:00",
+                  "local_branch": "master",
+                  "db_schema": "2026_10_18_000000_add_category_to_sensors_table (417)",
+                  "php_ver": "8.5.4",
+                  "python_ver": "3.14.4",
+                  "database_ver": "MariaDB 11.8.6-MariaDB-5ubuntu0.1 from Ubuntu",
+                  "rrdtool_ver": "1.9.0",
+                  "netsnmp_ver": "5.9.4.pre2"
+                }
+              ],
+              "count": 1
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"system\":[{\"local_ver\":\"26.11.0-dev.44+3fd4a769a5\",\"local_sha\":\"3fd4a769a508916c65f02d7dffd991c2318bffac\",\"local_date\":\"2026-10-24T17:05:58+00:00\",\"local_branch\":\"master\",\"db_schema\":\"2026_10_18_000000_add_category_to_sensors_table (417)\",\"php_ver\":\"8.5.4\",\"python_ver\":\"3.14.4\",\"database_ver\":\"MariaDB 11.8.6-MariaDB-5ubuntu0.1 from Ubuntu\",\"rrdtool_ver\":\"1.9.0\",\"netsnmp_ver\":\"5.9.4.pre2\"}],\"count\":1}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "system": [
+            {
+              "local_ver": "26.11.0-dev.44+3fd4a769a5",
+              "local_sha": "3fd4a769a508916c65f02d7dffd991c2318bffac",
+              "local_date": "2026-10-24T17:05:58+00:00",
+              "local_branch": "master",
+              "db_schema": "2026_10_18_000000_add_category_to_sensors_table (417)",
+              "php_ver": "8.5.4",
+              "python_ver": "3.14.4",
+              "database_ver": "MariaDB 11.8.6-MariaDB-5ubuntu0.1 from Ubuntu",
+              "rrdtool_ver": "1.9.0",
+              "netsnmp_ver": "5.9.4.pre2"
+            }
+          ],
+          "count": 1
+        }
+      }
+    }
+  }
+}

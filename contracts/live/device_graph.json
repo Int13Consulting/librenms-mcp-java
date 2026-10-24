@@ -1,0 +1,40 @@
+{
+  "tool": "device_graph",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "hostname": "192.0.2.1",
+        "graph_type": "device_poller_perf"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/192.0.2.1/device_poller_perf",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/png",
+            "bodyBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "originalBytes": 21057
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "mimeType": "image/png"
+          }
+        ]
+      }
+    }
+  }
+}

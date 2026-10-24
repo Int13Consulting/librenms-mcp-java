@@ -1,0 +1,110 @@
+{
+  "tool": "devicegroup_add_devices",
+  "scenarios": {
+    "required": {
+      "arguments": {
+        "name": "sample",
+        "payload": {}
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/v0/devicegroups/sample/devices",
+          "query": [],
+          "body": {},
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "full": {
+      "arguments": {
+        "name": "sample",
+        "payload": {}
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/v0/devicegroups/sample/devices",
+          "query": [],
+          "body": {},
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "error": {
+      "arguments": {
+        "name": "sample",
+        "payload": {}
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/v0/devicegroups/sample/devices",
+          "query": [],
+          "body": {},
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Not found\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Not found"
+        }
+      }
+    }
+  }
+}

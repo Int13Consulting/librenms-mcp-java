@@ -1,0 +1,52 @@
+{
+  "test": "tests/test_tool_paths.py::test_all_digit_group_id_shared_by_several_names_points_to_its_name",
+  "calls": [
+    {
+      "tool": "devicegroup_delete",
+      "arguments": {
+        "name": "2024"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devicegroups",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "groups": [
+                {
+                  "id": 2024,
+                  "name": "core"
+                },
+                {
+                  "id": 1,
+                  "name": "2024"
+                },
+                {
+                  "id": 2,
+                  "name": "2024"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"'2024' is both the ID of device group 'core' and the name of device groups with IDs 1, 2; use the name of the first or the ID of one of the others\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "'2024' is both the ID of device group 'core' and the name of device groups with IDs 1, 2; use the name of the first or the ID of one of the others"
+        }
+      }
+    }
+  ]
+}

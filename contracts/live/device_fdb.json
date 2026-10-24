@@ -1,0 +1,1215 @@
+{
+  "tool": "device_fdb",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "hostname": "192.0.2.1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/192.0.2.1/fdb",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "ports_fdb": [
+                {
+                  "ports_fdb_id": 1,
+                  "port_id": 25,
+                  "mac_address": "00005e000003",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 2,
+                  "port_id": 25,
+                  "mac_address": "00005e000004",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 3,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 4,
+                  "port_id": 25,
+                  "mac_address": "00005e000005",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 5,
+                  "port_id": 25,
+                  "mac_address": "00005e000006",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 6,
+                  "port_id": 25,
+                  "mac_address": "00005e000007",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 7,
+                  "port_id": 24,
+                  "mac_address": "00005e000008",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 8,
+                  "port_id": 25,
+                  "mac_address": "00005e000009",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 9,
+                  "port_id": 25,
+                  "mac_address": "00005e00000a",
+                  "vlan_id": 1,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 10,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 3,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 11,
+                  "port_id": 25,
+                  "mac_address": "00005e00000b",
+                  "vlan_id": 3,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 12,
+                  "port_id": 6,
+                  "mac_address": "00005e00000c",
+                  "vlan_id": 3,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 13,
+                  "port_id": 25,
+                  "mac_address": "00005e00000d",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 14,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 15,
+                  "port_id": 25,
+                  "mac_address": "00005e00000e",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 16,
+                  "port_id": 25,
+                  "mac_address": "00005e00000f",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 17,
+                  "port_id": 25,
+                  "mac_address": "00005e000010",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 18,
+                  "port_id": 25,
+                  "mac_address": "00005e000011",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 19,
+                  "port_id": 25,
+                  "mac_address": "00005e000012",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 20,
+                  "port_id": 4,
+                  "mac_address": "00005e000013",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 21,
+                  "port_id": 25,
+                  "mac_address": "00005e000014",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 22,
+                  "port_id": 25,
+                  "mac_address": "00005e000015",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 23,
+                  "port_id": 25,
+                  "mac_address": "00005e000016",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 24,
+                  "port_id": 25,
+                  "mac_address": "00005e000017",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 25,
+                  "port_id": 25,
+                  "mac_address": "00005e000018",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 26,
+                  "port_id": 25,
+                  "mac_address": "00005e000019",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 27,
+                  "port_id": 25,
+                  "mac_address": "00005e00001a",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 28,
+                  "port_id": 25,
+                  "mac_address": "00005e00001b",
+                  "vlan_id": 4,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 29,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 5,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 30,
+                  "port_id": 5,
+                  "mac_address": "00005e00001c",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 31,
+                  "port_id": 5,
+                  "mac_address": "00005e00001d",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 32,
+                  "port_id": 5,
+                  "mac_address": "00005e00001e",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 33,
+                  "port_id": 5,
+                  "mac_address": "00005e00001f",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 34,
+                  "port_id": 3,
+                  "mac_address": "00005e000020",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 35,
+                  "port_id": 3,
+                  "mac_address": "00005e000021",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 36,
+                  "port_id": 5,
+                  "mac_address": "00005e000022",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 37,
+                  "port_id": 25,
+                  "mac_address": "00005e000023",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 38,
+                  "port_id": 3,
+                  "mac_address": "00005e000024",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 39,
+                  "port_id": 5,
+                  "mac_address": "00005e000025",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 40,
+                  "port_id": 5,
+                  "mac_address": "00005e000026",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 41,
+                  "port_id": 25,
+                  "mac_address": "00005e000027",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 42,
+                  "port_id": 5,
+                  "mac_address": "00005e000028",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 43,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 44,
+                  "port_id": 25,
+                  "mac_address": "00005e000029",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 45,
+                  "port_id": 25,
+                  "mac_address": "00005e00002a",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 46,
+                  "port_id": 3,
+                  "mac_address": "00005e00002b",
+                  "vlan_id": 6,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 47,
+                  "port_id": 25,
+                  "mac_address": "00005e00002c",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 48,
+                  "port_id": 25,
+                  "mac_address": "00005e00002d",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 49,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 50,
+                  "port_id": 25,
+                  "mac_address": "00005e00002e",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 51,
+                  "port_id": 25,
+                  "mac_address": "00005e00002f",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 52,
+                  "port_id": 25,
+                  "mac_address": "00005e000007",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 53,
+                  "port_id": 25,
+                  "mac_address": "00005e000030",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 54,
+                  "port_id": 25,
+                  "mac_address": "00005e000031",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 55,
+                  "port_id": 25,
+                  "mac_address": "00005e000032",
+                  "vlan_id": 7,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 56,
+                  "port_id": 25,
+                  "mac_address": "00005e000033",
+                  "vlan_id": 8,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 57,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 9,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 58,
+                  "port_id": 3,
+                  "mac_address": "00005e000034",
+                  "vlan_id": 10,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 59,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 10,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 60,
+                  "port_id": 25,
+                  "mac_address": "00005e000001",
+                  "vlan_id": 13,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 61,
+                  "port_id": 3,
+                  "mac_address": "00005e000035",
+                  "vlan_id": 14,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 62,
+                  "port_id": 15,
+                  "mac_address": "00005e000036",
+                  "vlan_id": 14,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 63,
+                  "port_id": 25,
+                  "mac_address": "00005e000037",
+                  "vlan_id": 17,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 64,
+                  "port_id": 25,
+                  "mac_address": "00005e000038",
+                  "vlan_id": 18,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                },
+                {
+                  "ports_fdb_id": 65,
+                  "port_id": 14,
+                  "mac_address": "00005e000039",
+                  "vlan_id": 18,
+                  "device_id": 1,
+                  "created_at": "2026-10-24T19:05:10.000000Z",
+                  "updated_at": "2026-10-24T19:05:10.000000Z"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"ports_fdb\":[{\"ports_fdb_id\":1,\"port_id\":25,\"mac_address\":\"00005e000003\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":2,\"port_id\":25,\"mac_address\":\"00005e000004\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":3,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":4,\"port_id\":25,\"mac_address\":\"00005e000005\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":5,\"port_id\":25,\"mac_address\":\"00005e000006\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":6,\"port_id\":25,\"mac_address\":\"00005e000007\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":7,\"port_id\":24,\"mac_address\":\"00005e000008\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":8,\"port_id\":25,\"mac_address\":\"00005e000009\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":9,\"port_id\":25,\"mac_address\":\"00005e00000a\",\"vlan_id\":1,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":10,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":3,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":11,\"port_id\":25,\"mac_address\":\"00005e00000b\",\"vlan_id\":3,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":12,\"port_id\":6,\"mac_address\":\"00005e00000c\",\"vlan_id\":3,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":13,\"port_id\":25,\"mac_address\":\"00005e00000d\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":14,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":15,\"port_id\":25,\"mac_address\":\"00005e00000e\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":16,\"port_id\":25,\"mac_address\":\"00005e00000f\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":17,\"port_id\":25,\"mac_address\":\"00005e000010\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":18,\"port_id\":25,\"mac_address\":\"00005e000011\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":19,\"port_id\":25,\"mac_address\":\"00005e000012\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":20,\"port_id\":4,\"mac_address\":\"00005e000013\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":21,\"port_id\":25,\"mac_address\":\"00005e000014\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":22,\"port_id\":25,\"mac_address\":\"00005e000015\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":23,\"port_id\":25,\"mac_address\":\"00005e000016\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":24,\"port_id\":25,\"mac_address\":\"00005e000017\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":25,\"port_id\":25,\"mac_address\":\"00005e000018\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":26,\"port_id\":25,\"mac_address\":\"00005e000019\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":27,\"port_id\":25,\"mac_address\":\"00005e00001a\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":28,\"port_id\":25,\"mac_address\":\"00005e00001b\",\"vlan_id\":4,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":29,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":5,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":30,\"port_id\":5,\"mac_address\":\"00005e00001c\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":31,\"port_id\":5,\"mac_address\":\"00005e00001d\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":32,\"port_id\":5,\"mac_address\":\"00005e00001e\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":33,\"port_id\":5,\"mac_address\":\"00005e00001f\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":34,\"port_id\":3,\"mac_address\":\"00005e000020\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":35,\"port_id\":3,\"mac_address\":\"00005e000021\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":36,\"port_id\":5,\"mac_address\":\"00005e000022\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":37,\"port_id\":25,\"mac_address\":\"00005e000023\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":38,\"port_id\":3,\"mac_address\":\"00005e000024\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":39,\"port_id\":5,\"mac_address\":\"00005e000025\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":40,\"port_id\":5,\"mac_address\":\"00005e000026\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":41,\"port_id\":25,\"mac_address\":\"00005e000027\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":42,\"port_id\":5,\"mac_address\":\"00005e000028\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":43,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":44,\"port_id\":25,\"mac_address\":\"00005e000029\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":45,\"port_id\":25,\"mac_address\":\"00005e00002a\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":46,\"port_id\":3,\"mac_address\":\"00005e00002b\",\"vlan_id\":6,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":47,\"port_id\":25,\"mac_address\":\"00005e00002c\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":48,\"port_id\":25,\"mac_address\":\"00005e00002d\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":49,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":50,\"port_id\":25,\"mac_address\":\"00005e00002e\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":51,\"port_id\":25,\"mac_address\":\"00005e00002f\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":52,\"port_id\":25,\"mac_address\":\"00005e000007\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":53,\"port_id\":25,\"mac_address\":\"00005e000030\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":54,\"port_id\":25,\"mac_address\":\"00005e000031\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":55,\"port_id\":25,\"mac_address\":\"00005e000032\",\"vlan_id\":7,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":56,\"port_id\":25,\"mac_address\":\"00005e000033\",\"vlan_id\":8,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":57,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":9,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":58,\"port_id\":3,\"mac_address\":\"00005e000034\",\"vlan_id\":10,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":59,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":10,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":60,\"port_id\":25,\"mac_address\":\"00005e000001\",\"vlan_id\":13,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":61,\"port_id\":3,\"mac_address\":\"00005e000035\",\"vlan_id\":14,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":62,\"port_id\":15,\"mac_address\":\"00005e000036\",\"vlan_id\":14,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":63,\"port_id\":25,\"mac_address\":\"00005e000037\",\"vlan_id\":17,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":64,\"port_id\":25,\"mac_address\":\"00005e000038\",\"vlan_id\":18,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"},{\"ports_fdb_id\":65,\"port_id\":14,\"mac_address\":\"00005e000039\",\"vlan_id\":18,\"device_id\":1,\"created_at\":\"2026-10-24T19:05:10.000000Z\",\"updated_at\":\"2026-10-24T19:05:10.000000Z\"}],\"count\":65,\"total\":65,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "ports_fdb": [
+            {
+              "ports_fdb_id": 1,
+              "port_id": 25,
+              "mac_address": "00005e000003",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 2,
+              "port_id": 25,
+              "mac_address": "00005e000004",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 3,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 4,
+              "port_id": 25,
+              "mac_address": "00005e000005",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 5,
+              "port_id": 25,
+              "mac_address": "00005e000006",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 6,
+              "port_id": 25,
+              "mac_address": "00005e000007",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 7,
+              "port_id": 24,
+              "mac_address": "00005e000008",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 8,
+              "port_id": 25,
+              "mac_address": "00005e000009",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 9,
+              "port_id": 25,
+              "mac_address": "00005e00000a",
+              "vlan_id": 1,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 10,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 3,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 11,
+              "port_id": 25,
+              "mac_address": "00005e00000b",
+              "vlan_id": 3,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 12,
+              "port_id": 6,
+              "mac_address": "00005e00000c",
+              "vlan_id": 3,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 13,
+              "port_id": 25,
+              "mac_address": "00005e00000d",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 14,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 15,
+              "port_id": 25,
+              "mac_address": "00005e00000e",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 16,
+              "port_id": 25,
+              "mac_address": "00005e00000f",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 17,
+              "port_id": 25,
+              "mac_address": "00005e000010",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 18,
+              "port_id": 25,
+              "mac_address": "00005e000011",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 19,
+              "port_id": 25,
+              "mac_address": "00005e000012",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 20,
+              "port_id": 4,
+              "mac_address": "00005e000013",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 21,
+              "port_id": 25,
+              "mac_address": "00005e000014",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 22,
+              "port_id": 25,
+              "mac_address": "00005e000015",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 23,
+              "port_id": 25,
+              "mac_address": "00005e000016",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 24,
+              "port_id": 25,
+              "mac_address": "00005e000017",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 25,
+              "port_id": 25,
+              "mac_address": "00005e000018",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 26,
+              "port_id": 25,
+              "mac_address": "00005e000019",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 27,
+              "port_id": 25,
+              "mac_address": "00005e00001a",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 28,
+              "port_id": 25,
+              "mac_address": "00005e00001b",
+              "vlan_id": 4,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 29,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 5,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 30,
+              "port_id": 5,
+              "mac_address": "00005e00001c",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 31,
+              "port_id": 5,
+              "mac_address": "00005e00001d",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 32,
+              "port_id": 5,
+              "mac_address": "00005e00001e",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 33,
+              "port_id": 5,
+              "mac_address": "00005e00001f",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 34,
+              "port_id": 3,
+              "mac_address": "00005e000020",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 35,
+              "port_id": 3,
+              "mac_address": "00005e000021",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 36,
+              "port_id": 5,
+              "mac_address": "00005e000022",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 37,
+              "port_id": 25,
+              "mac_address": "00005e000023",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 38,
+              "port_id": 3,
+              "mac_address": "00005e000024",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 39,
+              "port_id": 5,
+              "mac_address": "00005e000025",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 40,
+              "port_id": 5,
+              "mac_address": "00005e000026",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 41,
+              "port_id": 25,
+              "mac_address": "00005e000027",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 42,
+              "port_id": 5,
+              "mac_address": "00005e000028",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 43,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 44,
+              "port_id": 25,
+              "mac_address": "00005e000029",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 45,
+              "port_id": 25,
+              "mac_address": "00005e00002a",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 46,
+              "port_id": 3,
+              "mac_address": "00005e00002b",
+              "vlan_id": 6,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 47,
+              "port_id": 25,
+              "mac_address": "00005e00002c",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 48,
+              "port_id": 25,
+              "mac_address": "00005e00002d",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 49,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 50,
+              "port_id": 25,
+              "mac_address": "00005e00002e",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 51,
+              "port_id": 25,
+              "mac_address": "00005e00002f",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 52,
+              "port_id": 25,
+              "mac_address": "00005e000007",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 53,
+              "port_id": 25,
+              "mac_address": "00005e000030",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 54,
+              "port_id": 25,
+              "mac_address": "00005e000031",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 55,
+              "port_id": 25,
+              "mac_address": "00005e000032",
+              "vlan_id": 7,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 56,
+              "port_id": 25,
+              "mac_address": "00005e000033",
+              "vlan_id": 8,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 57,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 9,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 58,
+              "port_id": 3,
+              "mac_address": "00005e000034",
+              "vlan_id": 10,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 59,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 10,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 60,
+              "port_id": 25,
+              "mac_address": "00005e000001",
+              "vlan_id": 13,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 61,
+              "port_id": 3,
+              "mac_address": "00005e000035",
+              "vlan_id": 14,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 62,
+              "port_id": 15,
+              "mac_address": "00005e000036",
+              "vlan_id": 14,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 63,
+              "port_id": 25,
+              "mac_address": "00005e000037",
+              "vlan_id": 17,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 64,
+              "port_id": 25,
+              "mac_address": "00005e000038",
+              "vlan_id": 18,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            },
+            {
+              "ports_fdb_id": 65,
+              "port_id": 14,
+              "mac_address": "00005e000039",
+              "vlan_id": 18,
+              "device_id": 1,
+              "created_at": "2026-10-24T19:05:10.000000Z",
+              "updated_at": "2026-10-24T19:05:10.000000Z"
+            }
+          ],
+          "count": 65,
+          "total": 65,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  }
+}

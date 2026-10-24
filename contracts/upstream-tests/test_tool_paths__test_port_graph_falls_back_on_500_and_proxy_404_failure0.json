@@ -1,0 +1,79 @@
+{
+  "test": "tests/test_tool_paths.py::test_port_graph_falls_back_on_500_and_proxy_404[failure0]",
+  "calls": [
+    {
+      "tool": "port_graph",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Te2/7"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports/Te2%2F7/port_bits",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 500,
+            "contentType": "application/json",
+            "body": {
+              "message": "Server Error"
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports",
+          "query": [
+            [
+              "columns",
+              "port_id,ifName"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "ports": [
+                {
+                  "port_id": 9,
+                  "ifName": "Te2/7"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/portgroups/multiport/bits/9",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/svg+xml",
+            "bodyBase64": "PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLz4="
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnLz4=",
+            "mimeType": "image/svg+xml"
+          }
+        ]
+      }
+    }
+  ]
+}

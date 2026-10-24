@@ -1,0 +1,59 @@
+{
+  "test": "tests/test_tool_paths.py::test_health_sensor_get_reports_a_missing_sensor",
+  "calls": [
+    {
+      "tool": "health_sensor_get",
+      "arguments": {
+        "hostname": "core1",
+        "type": "temperature",
+        "sensor_id": 999
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1/health/temperature/999",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "graphs": []
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "devices": [
+                {
+                  "device_id": 1,
+                  "hostname": "core1"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Sensor 999 (temperature) does not exist on core1\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Sensor 999 (temperature) does not exist on core1"
+        }
+      }
+    }
+  ]
+}

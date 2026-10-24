@@ -1,0 +1,41 @@
+{
+  "tool": "port_group_graph",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "port_ids": [
+          1
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/portgroups/multiport/bits/1",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/png",
+            "bodyBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "originalBytes": 17627
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "mimeType": "image/png"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "tool": "device_graph",
+  "scenarios": {
+    "required": {
+      "arguments": {
+        "hostname": "core1",
+        "graph_type": "device_processor"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1/device_processor",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/png",
+            "bodyBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "mimeType": "image/png"
+          }
+        ]
+      }
+    },
+    "full": {
+      "arguments": {
+        "hostname": "core1",
+        "graph_type": "device_processor",
+        "from_time": "-1d",
+        "to_time": "now",
+        "width": 1,
+        "height": 1,
+        "legend": true
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1/device_processor",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ],
+            [
+              "from",
+              "-1d"
+            ],
+            [
+              "to",
+              "now"
+            ],
+            [
+              "width",
+              "1"
+            ],
+            [
+              "height",
+              "1"
+            ],
+            [
+              "legend",
+              "yes"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/png",
+            "bodyBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "mimeType": "image/png"
+          }
+        ]
+      }
+    },
+    "error": {
+      "arguments": {
+        "hostname": "core1",
+        "graph_type": "device_processor"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1/device_processor",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "Could not render the device_processor graph for core1: LibreNMS returned HTTP 404 for GET devices/core1/device_processor: Not found"
+          }
+        ]
+      }
+    }
+  }
+}

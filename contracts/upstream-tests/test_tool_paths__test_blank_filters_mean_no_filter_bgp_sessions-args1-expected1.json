@@ -1,0 +1,37 @@
+{
+  "test": "tests/test_tool_paths.py::test_blank_filters_mean_no_filter[bgp_sessions-args1-expected1]",
+  "calls": [
+    {
+      "tool": "bgp_sessions",
+      "arguments": {
+        "hostname": "   "
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/bgp",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "test": "tests/test_tool_paths.py::test_bill_graph_types_are_limited_to_what_librenms_supports[bill_graph-args0]",
+  "calls": [
+    {
+      "tool": "bill_graph",
+      "arguments": {
+        "bill_id": 1,
+        "graph_type": "day"
+      },
+      "requests": [],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "1 validation error for call[bill_graph]\ngraph_type\n  Input should be 'bits' or 'monthly' [type=literal_error, input_value='day', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/literal_error"
+          }
+        ]
+      }
+    }
+  ]
+}

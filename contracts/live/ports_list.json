@@ -1,0 +1,283 @@
+{
+  "tool": "ports_list",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/ports",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "ports": [
+                {
+                  "port_id": 1,
+                  "ifName": "Vl1"
+                },
+                {
+                  "port_id": 2,
+                  "ifName": "Gi0/1"
+                },
+                {
+                  "port_id": 3,
+                  "ifName": "Gi0/2"
+                },
+                {
+                  "port_id": 4,
+                  "ifName": "Gi0/3"
+                },
+                {
+                  "port_id": 5,
+                  "ifName": "Gi0/4"
+                },
+                {
+                  "port_id": 6,
+                  "ifName": "Gi0/5"
+                },
+                {
+                  "port_id": 7,
+                  "ifName": "Gi0/6"
+                },
+                {
+                  "port_id": 8,
+                  "ifName": "Gi0/7"
+                },
+                {
+                  "port_id": 9,
+                  "ifName": "Gi0/8"
+                },
+                {
+                  "port_id": 10,
+                  "ifName": "Gi0/9"
+                },
+                {
+                  "port_id": 11,
+                  "ifName": "Gi0/10"
+                },
+                {
+                  "port_id": 12,
+                  "ifName": "Gi0/11"
+                },
+                {
+                  "port_id": 13,
+                  "ifName": "Gi0/12"
+                },
+                {
+                  "port_id": 14,
+                  "ifName": "Gi0/13"
+                },
+                {
+                  "port_id": 15,
+                  "ifName": "Gi0/14"
+                },
+                {
+                  "port_id": 16,
+                  "ifName": "Gi0/15"
+                },
+                {
+                  "port_id": 17,
+                  "ifName": "Gi0/16"
+                },
+                {
+                  "port_id": 18,
+                  "ifName": "Gi0/17"
+                },
+                {
+                  "port_id": 19,
+                  "ifName": "Gi0/18"
+                },
+                {
+                  "port_id": 20,
+                  "ifName": "Gi0/19"
+                },
+                {
+                  "port_id": 21,
+                  "ifName": "Gi0/20"
+                },
+                {
+                  "port_id": 22,
+                  "ifName": "Gi0/21"
+                },
+                {
+                  "port_id": 23,
+                  "ifName": "Gi0/22"
+                },
+                {
+                  "port_id": 24,
+                  "ifName": "Gi0/23"
+                },
+                {
+                  "port_id": 25,
+                  "ifName": "Gi0/24"
+                },
+                {
+                  "port_id": 26,
+                  "ifName": "Gi0/25"
+                },
+                {
+                  "port_id": 27,
+                  "ifName": "Gi0/26"
+                },
+                {
+                  "port_id": 28,
+                  "ifName": "Gi0/27"
+                },
+                {
+                  "port_id": 29,
+                  "ifName": "Gi0/28"
+                },
+                {
+                  "port_id": 30,
+                  "ifName": "Nu0"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"ports\":[{\"port_id\":1,\"ifName\":\"Vl1\"},{\"port_id\":2,\"ifName\":\"Gi0/1\"},{\"port_id\":3,\"ifName\":\"Gi0/2\"},{\"port_id\":4,\"ifName\":\"Gi0/3\"},{\"port_id\":5,\"ifName\":\"Gi0/4\"},{\"port_id\":6,\"ifName\":\"Gi0/5\"},{\"port_id\":7,\"ifName\":\"Gi0/6\"},{\"port_id\":8,\"ifName\":\"Gi0/7\"},{\"port_id\":9,\"ifName\":\"Gi0/8\"},{\"port_id\":10,\"ifName\":\"Gi0/9\"},{\"port_id\":11,\"ifName\":\"Gi0/10\"},{\"port_id\":12,\"ifName\":\"Gi0/11\"},{\"port_id\":13,\"ifName\":\"Gi0/12\"},{\"port_id\":14,\"ifName\":\"Gi0/13\"},{\"port_id\":15,\"ifName\":\"Gi0/14\"},{\"port_id\":16,\"ifName\":\"Gi0/15\"},{\"port_id\":17,\"ifName\":\"Gi0/16\"},{\"port_id\":18,\"ifName\":\"Gi0/17\"},{\"port_id\":19,\"ifName\":\"Gi0/18\"},{\"port_id\":20,\"ifName\":\"Gi0/19\"},{\"port_id\":21,\"ifName\":\"Gi0/20\"},{\"port_id\":22,\"ifName\":\"Gi0/21\"},{\"port_id\":23,\"ifName\":\"Gi0/22\"},{\"port_id\":24,\"ifName\":\"Gi0/23\"},{\"port_id\":25,\"ifName\":\"Gi0/24\"},{\"port_id\":26,\"ifName\":\"Gi0/25\"},{\"port_id\":27,\"ifName\":\"Gi0/26\"},{\"port_id\":28,\"ifName\":\"Gi0/27\"},{\"port_id\":29,\"ifName\":\"Gi0/28\"},{\"port_id\":30,\"ifName\":\"Nu0\"}],\"count\":30,\"total\":30,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "ports": [
+            {
+              "port_id": 1,
+              "ifName": "Vl1"
+            },
+            {
+              "port_id": 2,
+              "ifName": "Gi0/1"
+            },
+            {
+              "port_id": 3,
+              "ifName": "Gi0/2"
+            },
+            {
+              "port_id": 4,
+              "ifName": "Gi0/3"
+            },
+            {
+              "port_id": 5,
+              "ifName": "Gi0/4"
+            },
+            {
+              "port_id": 6,
+              "ifName": "Gi0/5"
+            },
+            {
+              "port_id": 7,
+              "ifName": "Gi0/6"
+            },
+            {
+              "port_id": 8,
+              "ifName": "Gi0/7"
+            },
+            {
+              "port_id": 9,
+              "ifName": "Gi0/8"
+            },
+            {
+              "port_id": 10,
+              "ifName": "Gi0/9"
+            },
+            {
+              "port_id": 11,
+              "ifName": "Gi0/10"
+            },
+            {
+              "port_id": 12,
+              "ifName": "Gi0/11"
+            },
+            {
+              "port_id": 13,
+              "ifName": "Gi0/12"
+            },
+            {
+              "port_id": 14,
+              "ifName": "Gi0/13"
+            },
+            {
+              "port_id": 15,
+              "ifName": "Gi0/14"
+            },
+            {
+              "port_id": 16,
+              "ifName": "Gi0/15"
+            },
+            {
+              "port_id": 17,
+              "ifName": "Gi0/16"
+            },
+            {
+              "port_id": 18,
+              "ifName": "Gi0/17"
+            },
+            {
+              "port_id": 19,
+              "ifName": "Gi0/18"
+            },
+            {
+              "port_id": 20,
+              "ifName": "Gi0/19"
+            },
+            {
+              "port_id": 21,
+              "ifName": "Gi0/20"
+            },
+            {
+              "port_id": 22,
+              "ifName": "Gi0/21"
+            },
+            {
+              "port_id": 23,
+              "ifName": "Gi0/22"
+            },
+            {
+              "port_id": 24,
+              "ifName": "Gi0/23"
+            },
+            {
+              "port_id": 25,
+              "ifName": "Gi0/24"
+            },
+            {
+              "port_id": 26,
+              "ifName": "Gi0/25"
+            },
+            {
+              "port_id": 27,
+              "ifName": "Gi0/26"
+            },
+            {
+              "port_id": 28,
+              "ifName": "Gi0/27"
+            },
+            {
+              "port_id": 29,
+              "ifName": "Gi0/28"
+            },
+            {
+              "port_id": 30,
+              "ifName": "Nu0"
+            }
+          ],
+          "count": 30,
+          "total": 30,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  }
+}

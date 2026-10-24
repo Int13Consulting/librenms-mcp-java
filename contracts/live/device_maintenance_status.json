@@ -1,0 +1,39 @@
+{
+  "tool": "device_maintenance_status",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "hostname": "192.0.2.1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/192.0.2.1/maintenance",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "is_under_maintenance": false
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"is_under_maintenance\":false}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "is_under_maintenance": false
+        }
+      }
+    }
+  }
+}

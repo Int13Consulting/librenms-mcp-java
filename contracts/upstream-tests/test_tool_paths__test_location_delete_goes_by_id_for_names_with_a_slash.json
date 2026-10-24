@@ -1,0 +1,55 @@
+{
+  "test": "tests/test_tool_paths.py::test_location_delete_goes_by_id_for_names_with_a_slash",
+  "calls": [
+    {
+      "tool": "location_delete",
+      "arguments": {
+        "location": "DC1/Room 2"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/resources/locations",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "locations": [
+                {
+                  "id": 7,
+                  "location": "DC1/Room 2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "DELETE",
+          "path": "/api/v0/locations/7",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok"
+        }
+      }
+    }
+  ]
+}

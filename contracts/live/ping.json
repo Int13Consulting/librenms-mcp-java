@@ -1,0 +1,35 @@
+{
+  "tool": "ping",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/ping",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "message": "pong"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"message\":\"pong\"}"
+          }
+        ],
+        "structuredContent": {
+          "message": "pong"
+        }
+      }
+    }
+  }
+}

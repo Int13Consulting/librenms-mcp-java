@@ -1,0 +1,61 @@
+{
+  "test": "tests/test_tool_paths.py::test_location_names_with_a_slash_go_by_id[location_edit-extra1-PATCH-/api/v0/locations/7]",
+  "calls": [
+    {
+      "tool": "location_edit",
+      "arguments": {
+        "location": "DC1/Room 2",
+        "payload": {
+          "lat": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/resources/locations",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "locations": [
+                {
+                  "id": 7,
+                  "location": "DC1/Room 2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/v0/locations/7",
+          "query": [],
+          "body": {
+            "lat": 1
+          },
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok"
+        }
+      }
+    }
+  ]
+}

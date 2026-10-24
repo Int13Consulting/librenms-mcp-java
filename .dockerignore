@@ -1,0 +1,6 @@
+*
+!pom.xml
+!src/main/
+!contracts/upstream-tools.json
+!contracts/tool-classification.json
+!contracts/tool-search.json

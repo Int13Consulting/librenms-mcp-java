@@ -1,0 +1,816 @@
+{
+  "$comment": "Hand-maintained. Access levels approved by project owner 2026-10-24 (Operator list per implementation-plan \u00a74; Oxidized config tools confirmed ADMIN \u2014 Oxidized is not in use on the target deployment).",
+  "tools": {
+    "alert_acknowledge": {
+      "access": "OPERATE",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_get_by_id": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_rule_add": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_rule_delete": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_rule_edit": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_rule_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_rules_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_template_create": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream has neither read-only nor admin tag"
+      ]
+    },
+    "alert_template_edit": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream has neither read-only nor admin tag"
+      ]
+    },
+    "alert_template_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_templates_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alert_unmute": {
+      "access": "OPERATE",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "alerts_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "arp_search": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bgp_session_edit": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bgp_session_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bgp_sessions": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bill_create_or_update": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "bill_delete": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bill_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bill_graph": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bill_graph_data": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bill_history": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bill_history_graph": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bill_history_graph_data": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "bills_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_add": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_availability": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_delete": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_discover": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream has neither read-only nor admin tag",
+        "GET with side effects (triggers discovery): never retry"
+      ]
+    },
+    "device_eventlog_add": {
+      "access": "OPERATE",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream has neither read-only nor admin tag"
+      ]
+    },
+    "device_fdb": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_graph": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_graphs_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_links": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_maintenance_status": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_nac": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_outages": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_ports": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_ports_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_rename": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream has neither read-only nor admin tag",
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "device_set_maintenance": {
+      "access": "OPERATE",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "device_update": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "device_vlans": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "devicegroup_add": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "devicegroup_add_devices": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "devicegroup_delete": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "devicegroup_devices": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "devicegroup_remove_devices": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "devicegroup_set_maintenance": {
+      "access": "OPERATE",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "devicegroup_update": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "devicegroups_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "devices_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "fdb_lookup": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "health_by_type": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "health_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "health_sensor_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "inventory_device": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "inventory_device_flat": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "location_add": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "location_delete": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "location_edit": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "location_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "location_set_maintenance": {
+      "access": "OPERATE",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "locations_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "logs_alertlog": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "logs_authlog": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "logs_eventlog": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "logs_syslog": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "logs_syslogsink": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "nac_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "ospf_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "ospf_ports": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "oxidized_config_get": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": [
+        "Oxidized config may contain secrets; raised from upstream read-only (approved security deviation). Oxidized not in use on target deployment"
+      ]
+    },
+    "oxidized_config_search": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": [
+        "Oxidized config may contain secrets; raised from upstream read-only (approved security deviation). Oxidized not in use on target deployment"
+      ]
+    },
+    "oxidized_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "ping": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "poller_group_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_description_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_description_update": {
+      "access": "OPERATE",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream has neither read-only nor admin tag",
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "port_fdb": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_get": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_graph": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_group_add": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "port_group_assign": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_group_graph": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_group_list_ports": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_group_remove": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_groups_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_ip_info": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_security_device": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_security_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_security_port": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "port_transceiver": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "ports_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "ports_search": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "ports_search_field": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "ports_search_mac": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "routing_ip_addresses": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "sensors_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "service_add": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "service_delete": {
+      "access": "ADMIN",
+      "destructive": true,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "service_edit": {
+      "access": "ADMIN",
+      "destructive": false,
+      "retrySafe": false,
+      "javaStatus": "done",
+      "notes": [
+        "Upstream destructiveHint=true kept in tool annotations; not gated by ALLOW_DESTRUCTIVE"
+      ]
+    },
+    "services_for_device": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "services_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "switching_links": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "switching_vlans": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "system_info": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    },
+    "vrf_list": {
+      "access": "READ",
+      "destructive": false,
+      "retrySafe": true,
+      "javaStatus": "done",
+      "notes": []
+    }
+  }
+}

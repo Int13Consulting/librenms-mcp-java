@@ -1,0 +1,72 @@
+{
+  "test": "tests/test_tool_paths.py::test_device_ports_get_reports_by_id_errors_instead_of_success",
+  "calls": [
+    {
+      "tool": "device_ports_get",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Te2/7"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports/Te2%2F7",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "text/plain; charset=utf-8",
+            "bodyBase64": "PGh0bWw+Tm90IEZvdW5kPC9odG1sPg=="
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports",
+          "query": [
+            [
+              "columns",
+              "port_id,ifName"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "ports": [
+                {
+                  "port_id": 9,
+                  "ifName": "Te2/7"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/ports/9",
+          "query": [],
+          "response": {
+            "status": 403,
+            "contentType": "application/json",
+            "body": {
+              "message": "Forbidden"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"LibreNMS returned HTTP 404 for GET devices/sw1/ports/Te2%2F7: non-JSON response: <html>Not Found</html> (The request path contains an encoded slash (%2F), which some reverse proxies reject; for Apache, set 'AllowEncodedSlashes NoDecode'.); the lookup by port ID also failed: LibreNMS returned HTTP 403 for GET ports/9: Forbidden\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "LibreNMS returned HTTP 404 for GET devices/sw1/ports/Te2%2F7: non-JSON response: <html>Not Found</html> (The request path contains an encoded slash (%2F), which some reverse proxies reject; for Apache, set 'AllowEncodedSlashes NoDecode'.); the lookup by port ID also failed: LibreNMS returned HTTP 403 for GET ports/9: Forbidden"
+        }
+      }
+    }
+  ]
+}

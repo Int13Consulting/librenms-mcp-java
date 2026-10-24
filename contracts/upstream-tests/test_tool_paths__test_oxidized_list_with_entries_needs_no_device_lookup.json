@@ -1,0 +1,91 @@
+{
+  "test": "tests/test_tool_paths.py::test_oxidized_list_with_entries_needs_no_device_lookup",
+  "calls": [
+    {
+      "tool": "oxidized_list",
+      "arguments": {
+        "hostname": "core1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/oxidized/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": [
+              {
+                "hostname": "core1",
+                "os": "nxos"
+              }
+            ]
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"devices\":[{\"hostname\":\"core1\",\"os\":\"nxos\"}],\"count\":1,\"total\":1,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "devices": [
+            {
+              "hostname": "core1",
+              "os": "nxos"
+            }
+          ],
+          "count": 1,
+          "total": 1,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "tool": "oxidized_list",
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/oxidized",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": [
+              {
+                "hostname": "core1",
+                "os": "nxos"
+              }
+            ]
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"devices\":[{\"hostname\":\"core1\",\"os\":\"nxos\"}],\"count\":1,\"total\":1,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "devices": [
+            {
+              "hostname": "core1",
+              "os": "nxos"
+            }
+          ],
+          "count": 1,
+          "total": 1,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "tool": "ospf_ports",
+  "scenarios": {
+    "required": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/ospf_ports",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "full": {
+      "arguments": {
+        "limit": 1,
+        "offset": 1
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/ospf_ports",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0
+        }
+      }
+    },
+    "error": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/ospf_ports",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Not found\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Not found"
+        }
+      }
+    }
+  }
+}

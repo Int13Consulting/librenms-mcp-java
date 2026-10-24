@@ -1,0 +1,51 @@
+{
+  "test": "tests/test_tool_paths.py::test_device_scoped_tools_with_data_cost_one_request[health_list-args2-graphs]",
+  "calls": [
+    {
+      "tool": "health_list",
+      "arguments": {
+        "hostname": "sw1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/health",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "graphs": [
+                {
+                  "id": 1
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"graphs\":[{\"id\":1}],\"count\":1,\"total\":1,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "graphs": [
+            {
+              "id": 1
+            }
+          ],
+          "count": 1,
+          "total": 1,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  ]
+}

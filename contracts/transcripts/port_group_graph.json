@@ -1,0 +1,134 @@
+{
+  "tool": "port_group_graph",
+  "scenarios": {
+    "required": {
+      "arguments": {
+        "port_ids": [
+          1
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/portgroups/multiport/bits/1",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/png",
+            "bodyBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "mimeType": "image/png"
+          }
+        ]
+      }
+    },
+    "full": {
+      "arguments": {
+        "port_ids": [
+          1
+        ],
+        "from_time": "-1d",
+        "to_time": "now",
+        "width": 1,
+        "height": 1,
+        "legend": true
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/portgroups/multiport/bits/1",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ],
+            [
+              "from",
+              "-1d"
+            ],
+            [
+              "to",
+              "now"
+            ],
+            [
+              "width",
+              "1"
+            ],
+            [
+              "height",
+              "1"
+            ],
+            [
+              "legend",
+              "yes"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "image/png",
+            "bodyBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "image",
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+            "mimeType": "image/png"
+          }
+        ]
+      }
+    },
+    "error": {
+      "arguments": {
+        "port_ids": [
+          1
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/portgroups/multiport/bits/1",
+          "query": [
+            [
+              "graph_type",
+              "png"
+            ]
+          ],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "Could not render the traffic graph for port(s) 1: LibreNMS returned HTTP 404 for GET portgroups/multiport/bits/1: Not found"
+          }
+        ]
+      }
+    }
+  }
+}

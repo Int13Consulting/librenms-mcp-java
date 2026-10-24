@@ -1,0 +1,1106 @@
+{
+  "bm25": {
+    "tools": {
+      "search_tools": {
+        "name": "search_tools",
+        "title": "Search Tools",
+        "description": "Search for tools using natural language.\n\nReturns matching tool definitions ranked by relevance,\nin the same format as list_tools.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "description": "Natural language query to search for tools",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      "call_tool": {
+        "name": "call_tool",
+        "title": "Call Tool",
+        "description": "Call a tool by name with the given arguments.\n\nUse this to execute tools discovered via search_tools.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "description": "The name of the tool to call",
+              "type": "string"
+            },
+            "arguments": {
+              "anyOf": [
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Arguments to pass to the tool"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      }
+    },
+    "results": [
+      {
+        "query": "port traffic graph",
+        "names": [
+          "port_graph",
+          "bill_graph_data",
+          "port_group_graph",
+          "bill_graph",
+          "bill_history_graph_data"
+        ]
+      },
+      {
+        "query": "list devices",
+        "names": [
+          "sensors_list",
+          "devicegroup_devices",
+          "oxidized_list",
+          "devices_list",
+          "port_security_list"
+        ]
+      },
+      {
+        "query": "device",
+        "names": [
+          "device_graphs_list",
+          "device_availability",
+          "device_rename",
+          "device_get",
+          "device_discover"
+        ]
+      },
+      {
+        "query": "acknowledge an alert",
+        "names": [
+          "alert_acknowledge",
+          "alert_unmute",
+          "alert_rule_delete",
+          "alert_template_edit",
+          "alert_rule_edit"
+        ]
+      },
+      {
+        "query": "alert rules",
+        "names": [
+          "alert_rules_list",
+          "alert_template_create",
+          "alert_template_edit",
+          "alert_rule_add",
+          "alert_unmute"
+        ]
+      },
+      {
+        "query": "billing history",
+        "names": [
+          "bill_history_graph",
+          "bill_history_graph_data",
+          "bill_history",
+          "bill_graph_data",
+          "bill_create_or_update"
+        ]
+      },
+      {
+        "query": "BGP sessions for a router",
+        "names": [
+          "bgp_sessions",
+          "bgp_session_edit",
+          "bgp_session_get",
+          "device_nac",
+          "nac_list"
+        ]
+      },
+      {
+        "query": "OSPF neighbours",
+        "names": [
+          "ospf_list",
+          "ospf_ports"
+        ]
+      },
+      {
+        "query": "ARP table lookup by IP",
+        "names": [
+          "arp_search",
+          "port_ip_info",
+          "service_edit",
+          "bgp_sessions",
+          "routing_ip_addresses"
+        ]
+      },
+      {
+        "query": "find a MAC address",
+        "names": [
+          "fdb_lookup",
+          "ports_search_mac",
+          "port_fdb",
+          "nac_list",
+          "arp_search"
+        ]
+      },
+      {
+        "query": "syslog messages",
+        "names": [
+          "logs_syslogsink",
+          "logs_syslog"
+        ]
+      },
+      {
+        "query": "event log for a device",
+        "names": [
+          "device_eventlog_add",
+          "logs_eventlog",
+          "device_graphs_list",
+          "device_rename",
+          "oxidized_config_get"
+        ]
+      },
+      {
+        "query": "sensor temperature health",
+        "names": [
+          "health_sensor_get",
+          "health_by_type",
+          "health_list",
+          "ping",
+          "inventory_device"
+        ]
+      },
+      {
+        "query": "oxidized configuration backup",
+        "names": [
+          "oxidized_config_get",
+          "oxidized_list",
+          "port_security_port",
+          "oxidized_config_search",
+          "port_security_device"
+        ]
+      },
+      {
+        "query": "port security",
+        "names": [
+          "port_security_port",
+          "port_security_list",
+          "port_security_device",
+          "port_get",
+          "port_transceiver"
+        ]
+      },
+      {
+        "query": "VLANs",
+        "names": [
+          "switching_vlans",
+          "device_vlans"
+        ]
+      },
+      {
+        "query": "inventory hardware serial",
+        "names": [
+          "inventory_device_flat",
+          "devices_list",
+          "inventory_device",
+          "ports_search_mac"
+        ]
+      },
+      {
+        "query": "maintenance mode",
+        "names": [
+          "location_set_maintenance",
+          "device_maintenance_status",
+          "device_set_maintenance",
+          "devicegroup_set_maintenance",
+          "port_security_list"
+        ]
+      },
+      {
+        "query": "location",
+        "names": [
+          "location_get",
+          "location_delete",
+          "location_edit",
+          "location_add",
+          "location_set_maintenance"
+        ]
+      },
+      {
+        "query": "poller group",
+        "names": [
+          "poller_group_get",
+          "device_update",
+          "device_add",
+          "port_group_add",
+          "port_group_assign"
+        ]
+      },
+      {
+        "query": "services nagios checks",
+        "names": [
+          "services_list",
+          "services_for_device",
+          "device_add"
+        ]
+      },
+      {
+        "query": "ping",
+        "names": [
+          "ping",
+          "device_add",
+          "service_add"
+        ]
+      },
+      {
+        "query": "system info version",
+        "names": [
+          "system_info",
+          "port_ip_info",
+          "devices_list",
+          "port_get",
+          "port_transceiver"
+        ]
+      },
+      {
+        "query": "Te2/7 interface",
+        "names": [
+          "device_ports_get",
+          "port_graph",
+          "oxidized_config_search",
+          "port_group_graph"
+        ]
+      },
+      {
+        "query": "delete",
+        "names": [
+          "device_delete",
+          "bill_delete",
+          "devicegroup_delete",
+          "alert_rule_delete",
+          "service_delete"
+        ]
+      },
+      {
+        "query": "ÉVÉNEMENT",
+        "names": []
+      },
+      {
+        "query": "a",
+        "names": []
+      },
+      {
+        "query": "",
+        "names": []
+      },
+      {
+        "query": "zzzz nothing matches",
+        "names": [
+          "nac_list"
+        ]
+      }
+    ],
+    "exampleResult": {
+      "text": "[{\"name\":\"port_graph\",\"title\":\"Port Graph\",\"description\":\"Render a per-port graph as an image, for example interface traffic.\\n\\nNames like 'Te2/7' can fail by name behind proxies that reject or decode\\nthe encoded slash. For 'bits' this tool then falls back to the port-group\\nendpoint, which renders the same traffic data by port ID, so callers\\nstill get a graph.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"hostname\":{\"description\":\"Device hostname or device ID\",\"type\":\"string\"},\"ifname\":{\"description\":\"Interface name as reported by LibreNMS, e.g. 'Po1' or 'Te2/7'\",\"type\":\"string\"},\"graph_type\":{\"default\":\"bits\",\"description\":\"Graph type: 'bits' (traffic), 'upkts' (unicast packets), 'nupkts' (non-unicast packets), 'errors', or 'etherlike'. The LibreNMS names ('port_bits', ...) are accepted too.\",\"type\":\"string\"},\"from_time\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Start of the time range, either a relative offset such as '-1d', '-6h' or '-1w', or a Unix timestamp. Defaults to the LibreNMS default (-1d).\"},\"to_time\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"End of the time range, either a relative offset or a Unix timestamp. Defaults to now.\"},\"width\":{\"anyOf\":[{\"minimum\":1,\"type\":\"integer\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Graph width in pixels.\"},\"height\":{\"anyOf\":[{\"minimum\":1,\"type\":\"integer\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Graph height in pixels.\"},\"legend\":{\"anyOf\":[{\"type\":\"boolean\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Whether to render the graph legend.\"}},\"required\":[\"hostname\",\"ifname\"],\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"graphs\",\"librenms\",\"ports\",\"read-only\"]}}},{\"name\":\"bill_graph_data\",\"title\":\"Bill Graph Data\",\"description\":\"Get bill graph data from LibreNMS.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"bill_id\":{\"description\":\"Bill ID\",\"minimum\":1,\"type\":\"integer\"},\"graph_type\":{\"description\":\"Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)\",\"enum\":[\"bits\",\"monthly\"],\"type\":\"string\"}},\"required\":[\"bill_id\",\"graph_type\"],\"type\":\"object\"},\"outputSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"bills\",\"librenms\",\"read-only\"]}}},{\"name\":\"port_group_graph\",\"title\":\"Port Group Graph\",\"description\":\"Render a traffic graph for one or more ports, by port ID.\\n\\nPlots every supplied port on the same axes, which makes it useful for\\ncomparing members of a LAG. Unlike port_graph this takes numeric port\\nIDs rather than interface names.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"port_ids\":{\"description\":\"One or more port IDs to plot on a single graph. Resolve names to IDs with ports_search_field or device_ports.\",\"items\":{\"type\":\"integer\"},\"minItems\":1,\"type\":\"array\"},\"from_time\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Start of the time range, either a relative offset such as '-1d', '-6h' or '-1w', or a Unix timestamp. Defaults to the LibreNMS default (-1d).\"},\"to_time\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"End of the time range, either a relative offset or a Unix timestamp. Defaults to now.\"},\"width\":{\"anyOf\":[{\"minimum\":1,\"type\":\"integer\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Graph width in pixels.\"},\"height\":{\"anyOf\":[{\"minimum\":1,\"type\":\"integer\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Graph height in pixels.\"},\"legend\":{\"anyOf\":[{\"type\":\"boolean\"},{\"type\":\"null\"}],\"default\":null,\"description\":\"Whether to render the graph legend.\"}},\"required\":[\"port_ids\"],\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"graphs\",\"librenms\",\"ports\",\"read-only\"]}}},{\"name\":\"bill_graph\",\"title\":\"Bill Graph\",\"description\":\"Render a bill graph as an image.\\n\\nFor the underlying numbers rather than a picture, use bill_graph_data.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"bill_id\":{\"description\":\"Bill ID\",\"minimum\":1,\"type\":\"integer\"},\"graph_type\":{\"description\":\"Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)\",\"enum\":[\"bits\",\"monthly\"],\"type\":\"string\"}},\"required\":[\"bill_id\",\"graph_type\"],\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"bills\",\"librenms\",\"read-only\"]}}},{\"name\":\"bill_history_graph_data\",\"title\":\"Bill History Graph Data\",\"description\":\"Get bill history graph data from LibreNMS.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"bill_id\":{\"description\":\"Bill ID\",\"minimum\":1,\"type\":\"integer\"},\"history_id\":{\"description\":\"Bill history ID\",\"minimum\":1,\"type\":\"integer\"},\"graph_type\":{\"description\":\"Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)\",\"enum\":[\"bits\",\"day\",\"hour\"],\"type\":\"string\"}},\"required\":[\"bill_id\",\"history_id\",\"graph_type\"],\"type\":\"object\"},\"outputSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"bills\",\"librenms\",\"read-only\"]}}}]",
+      "structuredContent": {
+        "result": [
+          {
+            "name": "port_graph",
+            "title": "Port Graph",
+            "description": "Render a per-port graph as an image, for example interface traffic.\n\nNames like 'Te2/7' can fail by name behind proxies that reject or decode\nthe encoded slash. For 'bits' this tool then falls back to the port-group\nendpoint, which renders the same traffic data by port ID, so callers\nstill get a graph.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "hostname": {
+                  "description": "Device hostname or device ID",
+                  "type": "string"
+                },
+                "ifname": {
+                  "description": "Interface name as reported by LibreNMS, e.g. 'Po1' or 'Te2/7'",
+                  "type": "string"
+                },
+                "graph_type": {
+                  "default": "bits",
+                  "description": "Graph type: 'bits' (traffic), 'upkts' (unicast packets), 'nupkts' (non-unicast packets), 'errors', or 'etherlike'. The LibreNMS names ('port_bits', ...) are accepted too.",
+                  "type": "string"
+                },
+                "from_time": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Start of the time range, either a relative offset such as '-1d', '-6h' or '-1w', or a Unix timestamp. Defaults to the LibreNMS default (-1d)."
+                },
+                "to_time": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "End of the time range, either a relative offset or a Unix timestamp. Defaults to now."
+                },
+                "width": {
+                  "anyOf": [
+                    {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Graph width in pixels."
+                },
+                "height": {
+                  "anyOf": [
+                    {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Graph height in pixels."
+                },
+                "legend": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Whether to render the graph legend."
+                }
+              },
+              "required": [
+                "hostname",
+                "ifname"
+              ],
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "graphs",
+                  "librenms",
+                  "ports",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "bill_graph_data",
+            "title": "Bill Graph Data",
+            "description": "Get bill graph data from LibreNMS.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "bill_id": {
+                  "description": "Bill ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "graph_type": {
+                  "description": "Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)",
+                  "enum": [
+                    "bits",
+                    "monthly"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bill_id",
+                "graph_type"
+              ],
+              "type": "object"
+            },
+            "outputSchema": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "bills",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "port_group_graph",
+            "title": "Port Group Graph",
+            "description": "Render a traffic graph for one or more ports, by port ID.\n\nPlots every supplied port on the same axes, which makes it useful for\ncomparing members of a LAG. Unlike port_graph this takes numeric port\nIDs rather than interface names.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "port_ids": {
+                  "description": "One or more port IDs to plot on a single graph. Resolve names to IDs with ports_search_field or device_ports.",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "from_time": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Start of the time range, either a relative offset such as '-1d', '-6h' or '-1w', or a Unix timestamp. Defaults to the LibreNMS default (-1d)."
+                },
+                "to_time": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "End of the time range, either a relative offset or a Unix timestamp. Defaults to now."
+                },
+                "width": {
+                  "anyOf": [
+                    {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Graph width in pixels."
+                },
+                "height": {
+                  "anyOf": [
+                    {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Graph height in pixels."
+                },
+                "legend": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "Whether to render the graph legend."
+                }
+              },
+              "required": [
+                "port_ids"
+              ],
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "graphs",
+                  "librenms",
+                  "ports",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "bill_graph",
+            "title": "Bill Graph",
+            "description": "Render a bill graph as an image.\n\nFor the underlying numbers rather than a picture, use bill_graph_data.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "bill_id": {
+                  "description": "Bill ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "graph_type": {
+                  "description": "Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)",
+                  "enum": [
+                    "bits",
+                    "monthly"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bill_id",
+                "graph_type"
+              ],
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "bills",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "bill_history_graph_data",
+            "title": "Bill History Graph Data",
+            "description": "Get bill history graph data from LibreNMS.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "bill_id": {
+                  "description": "Bill ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "history_id": {
+                  "description": "Bill history ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "graph_type": {
+                  "description": "Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)",
+                  "enum": [
+                    "bits",
+                    "day",
+                    "hour"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bill_id",
+                "history_id",
+                "graph_type"
+              ],
+              "type": "object"
+            },
+            "outputSchema": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "bills",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "regex": {
+    "tools": {
+      "search_tools": {
+        "name": "search_tools",
+        "title": "Search Tools",
+        "description": "Search for tools matching a regex pattern.\n\nReturns matching tool definitions in the same format as list_tools.\nInvalid, unsupported, or overlong patterns return an empty list.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "pattern": {
+              "description": "Case-insensitive regex pattern for tool names, descriptions, and parameters, up to 1000 characters; lookarounds and backreferences are not supported",
+              "type": "string"
+            }
+          },
+          "required": [
+            "pattern"
+          ]
+        },
+        "outputSchema": {
+          "properties": {
+            "result": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              ]
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object",
+          "x-fastmcp-wrap-result": true
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      },
+      "call_tool": {
+        "name": "call_tool",
+        "title": "Call Tool",
+        "description": "Call a tool by name with the given arguments.\n\nUse this to execute tools discovered via search_tools.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "description": "The name of the tool to call",
+              "type": "string"
+            },
+            "arguments": {
+              "anyOf": [
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Arguments to pass to the tool"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "_meta": {
+          "fastmcp": {
+            "tags": []
+          }
+        }
+      }
+    },
+    "results": [
+      {
+        "pattern": "graph",
+        "names": [
+          "bill_graph",
+          "bill_graph_data",
+          "bill_history_graph",
+          "bill_history_graph_data",
+          "device_graphs_list"
+        ]
+      },
+      {
+        "pattern": "^device_",
+        "names": [
+          "device_add",
+          "device_get",
+          "device_delete",
+          "device_update",
+          "device_ports"
+        ]
+      },
+      {
+        "pattern": "port.*graph",
+        "names": [
+          "port_graph",
+          "port_group_graph"
+        ]
+      },
+      {
+        "pattern": "bgp|ospf",
+        "names": [
+          "bgp_sessions",
+          "bgp_session_get",
+          "bgp_session_edit",
+          "ospf_list",
+          "ospf_ports"
+        ]
+      },
+      {
+        "pattern": "MAC",
+        "names": [
+          "devices_list",
+          "device_fdb",
+          "arp_search",
+          "fdb_lookup",
+          "nac_list"
+        ]
+      },
+      {
+        "pattern": "hostname",
+        "names": [
+          "devices_list",
+          "device_add",
+          "device_get",
+          "device_delete",
+          "device_update"
+        ]
+      },
+      {
+        "pattern": "(unclosed",
+        "names": []
+      },
+      {
+        "pattern": "a{2,}",
+        "names": [
+          "fdb_lookup",
+          "ports_search_mac"
+        ]
+      },
+      {
+        "pattern": "(?=lookahead)",
+        "names": []
+      },
+      {
+        "pattern": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "names": []
+      },
+      {
+        "pattern": "_list$",
+        "names": []
+      },
+      {
+        "pattern": "alert_(rule|template)",
+        "names": [
+          "alerts_get",
+          "alert_rules_list",
+          "alert_rule_get",
+          "alert_rule_add",
+          "alert_rule_edit"
+        ]
+      }
+    ],
+    "exampleResult": {
+      "text": "[{\"name\":\"bill_graph\",\"title\":\"Bill Graph\",\"description\":\"Render a bill graph as an image.\\n\\nFor the underlying numbers rather than a picture, use bill_graph_data.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"bill_id\":{\"description\":\"Bill ID\",\"minimum\":1,\"type\":\"integer\"},\"graph_type\":{\"description\":\"Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)\",\"enum\":[\"bits\",\"monthly\"],\"type\":\"string\"}},\"required\":[\"bill_id\",\"graph_type\"],\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"bills\",\"librenms\",\"read-only\"]}}},{\"name\":\"bill_graph_data\",\"title\":\"Bill Graph Data\",\"description\":\"Get bill graph data from LibreNMS.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"bill_id\":{\"description\":\"Bill ID\",\"minimum\":1,\"type\":\"integer\"},\"graph_type\":{\"description\":\"Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)\",\"enum\":[\"bits\",\"monthly\"],\"type\":\"string\"}},\"required\":[\"bill_id\",\"graph_type\"],\"type\":\"object\"},\"outputSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"bills\",\"librenms\",\"read-only\"]}}},{\"name\":\"bill_history_graph\",\"title\":\"Bill History Graph\",\"description\":\"Render a graph for a past billing period as an image.\\n\\nFor the underlying numbers rather than a picture, use\\nbill_history_graph_data.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"bill_id\":{\"description\":\"Bill ID\",\"minimum\":1,\"type\":\"integer\"},\"history_id\":{\"description\":\"Bill history ID\",\"minimum\":1,\"type\":\"integer\"},\"graph_type\":{\"description\":\"Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)\",\"enum\":[\"bits\",\"day\",\"hour\"],\"type\":\"string\"}},\"required\":[\"bill_id\",\"history_id\",\"graph_type\"],\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"bills\",\"librenms\",\"read-only\"]}}},{\"name\":\"bill_history_graph_data\",\"title\":\"Bill History Graph Data\",\"description\":\"Get bill history graph data from LibreNMS.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"bill_id\":{\"description\":\"Bill ID\",\"minimum\":1,\"type\":\"integer\"},\"history_id\":{\"description\":\"Bill history ID\",\"minimum\":1,\"type\":\"integer\"},\"graph_type\":{\"description\":\"Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)\",\"enum\":[\"bits\",\"day\",\"hour\"],\"type\":\"string\"}},\"required\":[\"bill_id\",\"history_id\",\"graph_type\"],\"type\":\"object\"},\"outputSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"bills\",\"librenms\",\"read-only\"]}}},{\"name\":\"device_graphs_list\",\"title\":\"Device Graphs List\",\"description\":\"List the graph types available for a device.\\n\\nUse this to discover the values accepted by the `graph_type` argument of\\ndevice_graph, for example 'device_icmp_perf' or 'device_poller_perf'.\",\"inputSchema\":{\"additionalProperties\":false,\"properties\":{\"hostname\":{\"description\":\"Device hostname or device ID\",\"type\":\"string\"}},\"required\":[\"hostname\"],\"type\":\"object\"},\"outputSchema\":{\"additionalProperties\":true,\"type\":\"object\"},\"annotations\":{\"readOnlyHint\":true,\"destructiveHint\":false,\"idempotentHint\":true},\"_meta\":{\"fastmcp\":{\"tags\":[\"graphs\",\"librenms\",\"read-only\"]}}}]",
+      "structuredContent": {
+        "result": [
+          {
+            "name": "bill_graph",
+            "title": "Bill Graph",
+            "description": "Render a bill graph as an image.\n\nFor the underlying numbers rather than a picture, use bill_graph_data.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "bill_id": {
+                  "description": "Bill ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "graph_type": {
+                  "description": "Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)",
+                  "enum": [
+                    "bits",
+                    "monthly"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bill_id",
+                "graph_type"
+              ],
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "bills",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "bill_graph_data",
+            "title": "Bill Graph Data",
+            "description": "Get bill graph data from LibreNMS.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "bill_id": {
+                  "description": "Bill ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "graph_type": {
+                  "description": "Graph type for the current billing period: 'bits' (traffic) or 'monthly' (transfer per month)",
+                  "enum": [
+                    "bits",
+                    "monthly"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bill_id",
+                "graph_type"
+              ],
+              "type": "object"
+            },
+            "outputSchema": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "bills",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "bill_history_graph",
+            "title": "Bill History Graph",
+            "description": "Render a graph for a past billing period as an image.\n\nFor the underlying numbers rather than a picture, use\nbill_history_graph_data.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "bill_id": {
+                  "description": "Bill ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "history_id": {
+                  "description": "Bill history ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "graph_type": {
+                  "description": "Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)",
+                  "enum": [
+                    "bits",
+                    "day",
+                    "hour"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bill_id",
+                "history_id",
+                "graph_type"
+              ],
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "bills",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "bill_history_graph_data",
+            "title": "Bill History Graph Data",
+            "description": "Get bill history graph data from LibreNMS.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "bill_id": {
+                  "description": "Bill ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "history_id": {
+                  "description": "Bill history ID",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "graph_type": {
+                  "description": "Graph type for a past billing period: 'bits' (traffic), 'day' or 'hour' (transfer per day or hour)",
+                  "enum": [
+                    "bits",
+                    "day",
+                    "hour"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "bill_id",
+                "history_id",
+                "graph_type"
+              ],
+              "type": "object"
+            },
+            "outputSchema": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "bills",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          },
+          {
+            "name": "device_graphs_list",
+            "title": "Device Graphs List",
+            "description": "List the graph types available for a device.\n\nUse this to discover the values accepted by the `graph_type` argument of\ndevice_graph, for example 'device_icmp_perf' or 'device_poller_perf'.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "hostname": {
+                  "description": "Device hostname or device ID",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "hostname"
+              ],
+              "type": "object"
+            },
+            "outputSchema": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "annotations": {
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true
+            },
+            "_meta": {
+              "fastmcp": {
+                "tags": [
+                  "graphs",
+                  "librenms",
+                  "read-only"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

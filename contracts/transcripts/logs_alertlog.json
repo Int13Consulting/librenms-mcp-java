@@ -1,0 +1,167 @@
+{
+  "tool": "logs_alertlog",
+  "scenarios": {
+    "required": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/logs/alertlog",
+          "query": [
+            [
+              "start",
+              "0"
+            ],
+            [
+              "limit",
+              "100"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0,\"limit\":100,\"start\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0,
+          "limit": 100,
+          "start": 0
+        }
+      }
+    },
+    "full": {
+      "arguments": {
+        "hostname": "core1",
+        "start": 1,
+        "limit": 1,
+        "from_ts": "from_ts-1",
+        "to_ts": "to_ts-1",
+        "sortorder": "sortorder-1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/core1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 1,
+              "devices": [
+                {
+                  "device_id": 1,
+                  "hostname": "core1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "GET",
+          "path": "/api/v0/logs/alertlog/core1",
+          "query": [
+            [
+              "start",
+              "1"
+            ],
+            [
+              "limit",
+              "1"
+            ],
+            [
+              "from",
+              "from_ts-1"
+            ],
+            [
+              "to",
+              "to_ts-1"
+            ],
+            [
+              "sortorder",
+              "sortorder-1"
+            ]
+          ],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "count": 0
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"count\":0,\"limit\":1,\"start\":1}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "count": 0,
+          "limit": 1,
+          "start": 1
+        }
+      }
+    },
+    "error": {
+      "arguments": {},
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/logs/alertlog",
+          "query": [
+            [
+              "start",
+              "0"
+            ],
+            [
+              "limit",
+              "100"
+            ]
+          ],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "Not found"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"Not found\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "Not found"
+        }
+      }
+    }
+  }
+}

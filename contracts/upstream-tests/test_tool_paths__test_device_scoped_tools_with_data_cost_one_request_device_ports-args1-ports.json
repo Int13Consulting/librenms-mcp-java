@@ -1,0 +1,51 @@
+{
+  "test": "tests/test_tool_paths.py::test_device_scoped_tools_with_data_cost_one_request[device_ports-args1-ports]",
+  "calls": [
+    {
+      "tool": "device_ports",
+      "arguments": {
+        "hostname": "sw1"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/sw1/ports",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "ports": [
+                {
+                  "id": 1
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\",\"ports\":[{\"id\":1}],\"count\":1,\"total\":1,\"limit\":100,\"offset\":0}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok",
+          "ports": [
+            {
+              "id": 1
+            }
+          ],
+          "count": 1,
+          "total": 1,
+          "limit": 100,
+          "offset": 0
+        }
+      }
+    }
+  ]
+}

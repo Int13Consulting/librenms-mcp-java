@@ -1,0 +1,39 @@
+{
+  "tool": "bgp_session_get",
+  "librenmsVersion": "26.11.0-dev.44+3fd4a769a5",
+  "scenarios": {
+    "live": {
+      "arguments": {
+        "bgp_id": 1
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/bgp/1",
+          "query": [],
+          "response": {
+            "status": 404,
+            "contentType": "application/json",
+            "body": {
+              "status": "error",
+              "message": "BGP peer 1 does not exist"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"error\",\"message\":\"BGP peer 1 does not exist\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "error",
+          "message": "BGP peer 1 does not exist"
+        }
+      }
+    }
+  }
+}

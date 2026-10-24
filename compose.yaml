@@ -1,0 +1,49 @@
+# Single-container deployment. TLS terminates at a reverse proxy in front of this port.
+# Create the secret files first (see docs/deployment.md):
+#   install -d -m 700 secrets
+#   printf '%s' "$LIBRENMS_TOKEN" > secrets/librenms_token
+#   openssl rand -hex 32 > secrets/mcp_api_key
+#   chmod 644 secrets/librenms_token secrets/mcp_api_key   # readable by the container's uid 65532
+services:
+  librenms-mcp:
+    build: .
+    image: librenms-mcp:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      LIBRENMS_URL: ${LIBRENMS_URL:?set LIBRENMS_URL}
+      LIBRENMS_ALLOW_HTTP: ${LIBRENMS_ALLOW_HTTP:-false}
+      LIBRENMS_VERIFY_SSL: ${LIBRENMS_VERIFY_SSL:-true}
+      LIBRENMS_TOKEN_FILE: /run/secrets/librenms_token
+      AUTH_MODE: ${AUTH_MODE:-apikey}            # entra, apikey or entra,apikey
+      MCP_API_KEY_FILE: /run/secrets/mcp_api_key
+      MCP_API_KEY_ROLE: ${MCP_API_KEY_ROLE:-reader}
+      MCP_PUBLIC_URL: ${MCP_PUBLIC_URL:-}         # required for entra; see docs/entra-setup.md
+      ENTRA_TENANT_ID: ${ENTRA_TENANT_ID:-}
+      ENTRA_CLIENT_ID: ${ENTRA_CLIENT_ID:-}
+      ENTRA_ALLOWED_CLIENT_IDS: ${ENTRA_ALLOWED_CLIENT_IDS:-}
+      MCP_ALLOWED_ORIGINS: ${MCP_ALLOWED_ORIGINS:-}
+      RATE_LIMIT_MAX_REQUESTS: ${RATE_LIMIT_MAX_REQUESTS:-100}
+      TOOL_SEARCH_ENABLED: ${TOOL_SEARCH_ENABLED:-false}
+      TOOL_SEARCH_STRATEGY: ${TOOL_SEARCH_STRATEGY:-bm25}
+      READ_ONLY_MODE: ${READ_ONLY_MODE:-true}
+      DISABLED_TAGS: ${DISABLED_TAGS:-}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      MCP_METRICS_PORT: ${MCP_METRICS_PORT:-0}      # e.g. 9464; scrape from the Docker network, do not publish
+    secrets:
+      - librenms_token
+      - mcp_api_key
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+secrets:
+  librenms_token:
+    file: ./secrets/librenms_token
+  mcp_api_key:
+    file: ./secrets/mcp_api_key

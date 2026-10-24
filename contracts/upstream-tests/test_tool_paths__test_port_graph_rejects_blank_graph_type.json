@@ -1,0 +1,23 @@
+{
+  "test": "tests/test_tool_paths.py::test_port_graph_rejects_blank_graph_type[   ]",
+  "calls": [
+    {
+      "tool": "port_graph",
+      "arguments": {
+        "hostname": "sw1",
+        "ifname": "Po1",
+        "graph_type": "   "
+      },
+      "requests": [],
+      "result": {
+        "isError": true,
+        "content": [
+          {
+            "type": "text",
+            "text": "graph_type is required, e.g. 'bits' or 'errors'."
+          }
+        ]
+      }
+    }
+  ]
+}

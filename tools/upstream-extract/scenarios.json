@@ -1,0 +1,77 @@
+{
+  "$comment": "Argument overrides for capture.py where schema-generated arguments would only exercise argument validation, plus named extra scenarios. Path-safety extras mirror upstream tests/test_tool_paths.py.",
+  "alert_rule_edit": {
+    "required": {
+      "payload": {
+        "rule_id": 1,
+        "name": "sample",
+        "severity": "critical"
+      }
+    }
+  },
+  "alert_template_edit": {
+    "required": {
+      "payload": {
+        "template_id": 1,
+        "name": "sample",
+        "template": "{{ $alert->title }}"
+      }
+    }
+  },
+  "arp_search": {
+    "full": {
+      "query": "all",
+      "device": "core1",
+      "limit": 1,
+      "offset": 1
+    }
+  },
+  "device_get": {
+    "extra": {
+      "slash-stays-in-segment": {
+        "hostname": "core1/discover"
+      },
+      "hash-encoded": {
+        "hostname": "sw#1"
+      },
+      "spaces-preserved": {
+        "hostname": " sw1 "
+      }
+    }
+  },
+  "oxidized_config_get": {
+    "extra": {
+      "slash-stays-in-segment": {
+        "hostname": "a/b"
+      },
+      "dot-segments-rejected": {
+        "hostname": "../../devices"
+      }
+    }
+  },
+  "ports_search_field": {
+    "extra": {
+      "slash-stays-in-segment": {
+        "field": "ifAlias",
+        "search": "uplink to core/1"
+      }
+    }
+  },
+  "device_delete": {
+    "extra": {
+      "dot-segment-rejected": {
+        "hostname": ".."
+      },
+      "dot-segments-rejected": {
+        "hostname": "../rules/5"
+      }
+    }
+  },
+  "logs_eventlog": {
+    "extra": {
+      "dot-segments-rejected": {
+        "hostname": "../../devices/core1/discover"
+      }
+    }
+  }
+}

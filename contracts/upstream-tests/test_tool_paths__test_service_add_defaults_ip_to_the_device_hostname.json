@@ -1,0 +1,120 @@
+{
+  "test": "tests/test_tool_paths.py::test_service_add_defaults_ip_to_the_device_hostname",
+  "calls": [
+    {
+      "tool": "service_add",
+      "arguments": {
+        "hostname": "1",
+        "payload": {
+          "type": "icmp"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "devices": [
+                {
+                  "device_id": 1,
+                  "hostname": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/api/v0/services/1",
+          "query": [],
+          "body": {
+            "type": "icmp",
+            "ip": ""
+          },
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "tool": "service_add",
+      "arguments": {
+        "hostname": "1",
+        "payload": {
+          "type": "icmp",
+          "ip": "192.0.2.9"
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/v0/devices/1",
+          "query": [],
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok",
+              "devices": [
+                {
+                  "device_id": 1,
+                  "hostname": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/api/v0/services/1",
+          "query": [],
+          "body": {
+            "type": "icmp",
+            "ip": "192.0.2.9"
+          },
+          "response": {
+            "status": 200,
+            "contentType": "application/json",
+            "body": {
+              "status": "ok"
+            }
+          }
+        }
+      ],
+      "result": {
+        "isError": false,
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"status\":\"ok\"}"
+          }
+        ],
+        "structuredContent": {
+          "status": "ok"
+        }
+      }
+    }
+  ]
+}
