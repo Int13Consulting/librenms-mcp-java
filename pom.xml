@@ -19,7 +19,7 @@
 
     <javalin.version>7.2.3</javalin.version>
     <mcp.version>2.1.0</mcp.version>
-    <logback.version>1.6.5</logback.version>
+    <logback.version>1.6.6</logback.version>
     <nimbus.version>10.10</nimbus.version>
     <micrometer.version>1.17.2</micrometer.version>
     <junit.version>6.1.3</junit.version>
